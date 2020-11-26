@@ -1,7 +1,7 @@
-import types from './actionTypes';
-import {AnyAction} from 'redux';
-import {produce} from 'immer';
-import {ITracks} from "../../../interface";
+import types from './actionTypes'
+import {AnyAction} from 'redux'
+import {produce} from 'immer'
+import {ITracks} from "../../../interface"
 
 export interface IBannerItem {
   pic: string;
@@ -37,16 +37,16 @@ const defaultState: FindState = {
 export const findReducer = produce((state, action: AnyAction) => {
   switch (action.type) {
     case types.BANNER:
-      state.banner = action.data;
-      break;
+      state.banner = action.data
+      break
     case types.RECOMMEND:
-      state.recommend = action.data;
-      break;
+      state.recommend = action.data
+      break
     case types.FINISH_COUNT:
-      state.finishCount = state.finishCount + action.data;
-      break;
+      state.finishCount = state.finishCount + action.data
+      break
     case types.NEW_SONG:
-      state.newSong = action.data;
-      break;
+      state.newSong = action.data
+      break
   }
-}, defaultState);
+}, defaultState)
