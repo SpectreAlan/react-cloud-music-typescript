@@ -1,7 +1,7 @@
-import React from "react";
-import {Container} from "./style";
+import React from "react"
+import {Container} from "./style"
 import {IRecommend} from '../../../store/modules/find/reducer'
-import LazyLoad, {forceCheck} from 'react-lazyload';
+import LazyLoad, {forceCheck} from 'react-lazyload'
 import Scroll from '../../../components/scroll'
 import {getCount} from '../../../utils'
 
