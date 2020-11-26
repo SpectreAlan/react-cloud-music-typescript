@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"
 import {useSelector} from 'react-redux'
 import SongListPage from '../../layouts/SongListPage'
 import Loading from '../../components/loading'
 import {ISongListProps, ITracks} from '../../interface'
-import {RootState} from "../../store/reducer";
-import {getName} from "../../utils";
-import {getDailyRecommendationRequest} from "../../api/user";
+import {RootState} from "../../store/reducer"
+import {getName} from "../../utils"
+import {getDailyRecommendationRequest} from "../../api/user"
 
 const DailyRecommendation = () => {
   const [loading, setLoading] = useState(false)
