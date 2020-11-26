@@ -1,10 +1,10 @@
 ```bash
-# 安装create-react-app命令行脚手架
-npm install -g create-react-app
-# 项目搭建
-npx create-react-app cloud-music-ts --template typescript
+# 克隆项目
+git clone https://github.com/SpectreAlan/react-cloud-music-typescript.git
 # 进入项目目录
-cd cloud-music-ts
-# 启动项目
+cd react-cloud-music-typescript
+# 安装依赖
+yarn install
+# 启动服务
 yarn start
 ```
