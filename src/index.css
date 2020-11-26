@@ -13,7 +13,6 @@ body {
   }
 }
 
-/* 3倍屏 */
 @media only screen and (-webkit-min-device-pixel-ratio: 3.0) {
   .border-bottom::after {
     -webkit-transform: scaleY(0.33);
