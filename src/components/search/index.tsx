@@ -7,8 +7,10 @@ interface SearchProps extends RouteComponentProps {
 }
 
 const Search = (props: SearchProps) => {
+
     useEffect(() => {
     }, []);
+
     const mv = props.location.pathname.includes('/mv')
     return (
         <Container>
