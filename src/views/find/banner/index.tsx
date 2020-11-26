@@ -1,5 +1,5 @@
-import React from "react";
-import Slider from "../../../components/slider";
+import React from "react"
+import Slider from "../../../components/slider"
 import {IBanner} from '../../../store/modules/find/reducer'
 
 interface BannerInterface {
