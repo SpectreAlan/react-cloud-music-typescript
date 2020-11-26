@@ -1,9 +1,9 @@
-import types from './actionTypes';
-import {getBannerRequest, getRecommendRequest, getTopSongRequest} from '../../../api/find';
-import {Dispatch} from 'redux';
-import {IBanner, IRecommend} from './reducer';
-import {ITracks} from "../../../interface";
-import {AxiosResponse} from 'axios';
+import types from './actionTypes'
+import {getBannerRequest, getRecommendRequest, getTopSongRequest} from '../../../api/find'
+import {Dispatch} from 'redux'
+import {IBanner, IRecommend} from './reducer'
+import {ITracks} from "../../../interface"
+import {AxiosResponse} from 'axios'
 import {getName} from '../../../utils'
 
 export const changeBanner = (data: IBanner) => ({
@@ -32,21 +32,21 @@ export const getBanner = () => {
       dispatch(changeBanner(data.data.banners))
       dispatch(changeFinishCount(1))
     }).catch((e) => {
-      console.log("轮播图:" + e);
+      console.log("轮播图:" + e)
     })
   }
-};
+}
 
 export const getRecommend = () => {
   return (dispatch: Dispatch) => {
     getRecommendRequest<{ result: IRecommend }>().then((data: AxiosResponse) => {
-      dispatch(changeRecommend(data.data.result));
+      dispatch(changeRecommend(data.data.result))
       dispatch(changeFinishCount(1))
     }).catch((e) => {
-      console.log("推荐歌单: " + e);
-    });
+      console.log("推荐歌单: " + e)
+    })
   }
-};
+}
 
 export const getNewSong = () => {
   return (dispatch: Dispatch) => {
@@ -69,6 +69,6 @@ export const getNewSong = () => {
       dispatch(changeNewSong(list));
     }).catch((e) => {
       console.log("新歌: " + e);
-    });
+    })
   }
-};
+}
