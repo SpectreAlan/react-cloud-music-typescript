@@ -1,9 +1,9 @@
-import React, {useRef, useCallback} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, {useRef, useCallback} from 'react'
+import {useHistory} from 'react-router-dom'
 import {Top, Cover, ToolBar, ScrollContainer} from './style'
 import Scroll from '../../components/scroll'
-import SongList from '../SongList';
-import {forceCheck} from 'react-lazyload';
+import SongList from '../SongList'
+import {forceCheck} from 'react-lazyload'
 import {ISongListProps} from '../../interface'
 
 interface IInfo {
