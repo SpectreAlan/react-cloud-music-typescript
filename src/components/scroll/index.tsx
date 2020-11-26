@@ -1,4 +1,4 @@
-import React, {useState, forwardRef, useRef, useEffect, ReactNode, useImperativeHandle} from "react";
+import React, {useState, forwardRef, useRef, useEffect, ReactNode, useImperativeHandle} from "react"
 import BScroll from '@better-scroll/core'
 import Pullup from '@better-scroll/pull-up'
 import PullDown from '@better-scroll/pull-down'
