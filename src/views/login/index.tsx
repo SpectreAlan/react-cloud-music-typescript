@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import {login, clearInfo} from "../../store/modules/user/actions";
-import {Container} from "./style";
+import React, {useState, useEffect} from "react"
+import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {login, clearInfo} from "../../store/modules/user/actions"
+import {Container} from "./style"
 
 const Login = () => {
   const router = useHistory()
   const dispatch = useDispatch()
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('')
+  const [password, setPassword] = useState('')
   const loginRequest = () => {
     dispatch(login({phone, password}, router))
   }
