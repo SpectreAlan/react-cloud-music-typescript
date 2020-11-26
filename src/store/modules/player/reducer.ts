@@ -1,8 +1,8 @@
-import types from './actionTypes';
-import {AnyAction} from 'redux';
-import {produce} from 'immer';
+import types from './actionTypes'
+import {AnyAction} from 'redux'
+import {produce} from 'immer'
 import {ITracks} from '../../../interface'
-import {playMode} from "../../../config/player";
+import {playMode} from "../../../config/player"
 
 export interface PlayerState {
   fullScreen: boolean;
