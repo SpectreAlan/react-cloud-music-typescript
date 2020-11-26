@@ -10,6 +10,7 @@ const Player = () => {
   const audioRef = useRef(null)
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0)
+  const [cover, setCover] = useState('')
   const [duration, setDuration] = useState(0)
 
   const {index, playList, pause, mode} = useSelector((state: RootState) => ({
@@ -31,6 +32,7 @@ const Player = () => {
     }
     dispatch(changePause(false));
     setCurrentTime(0);
+    setCover(song.img)
     setDuration((song.duration / 1000) | 0);
   }, [index, playList, dispatch]);
 
@@ -60,7 +62,7 @@ const Player = () => {
     dispatch(changeIndex(i))
   }
   return (<>
-    <Mini img={playList[index].img} duration={duration} pause={pause} currentTime={currentTime}/>
+    <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/>
     <audio
       ref={audioRef}
       onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}

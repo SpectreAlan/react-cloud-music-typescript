@@ -1,6 +1,8 @@
 import React from 'react'
 import {Container} from './style'
 
+const url = require('../../../assets/images/music.png')
+
 interface InterfaceProps {
   img: string;
   duration: number;
@@ -10,8 +12,8 @@ interface InterfaceProps {
 
 const Mini = (props: InterfaceProps) => {
   const {currentTime, duration, img, pause} = props
-  const dashArray = Math.PI * 100;
-  const dashOffset = (1 - currentTime / duration) * dashArray;
+  const strokeDasharray = Math.PI * 100;
+  const strokeDashoffset = (1 - currentTime / duration) * strokeDasharray || 0;
   return (
     <Container>
       <svg width={36} height={36} viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -22,11 +24,11 @@ const Mini = (props: InterfaceProps) => {
           cx="50"
           cy="50"
           fill="transparent"
-          strokeDasharray={dashArray}
-          strokeDashoffset={dashOffset}
+          strokeDasharray={strokeDasharray}
+          strokeDashoffset={strokeDashoffset}
         />
       </svg>
-      <img src={img} alt="music" className={pause ? '' : 'playing'}/>
+      <img src={img || url} alt="music" className={pause ? '' : 'playing'}/>
     </Container>
   )
 }
