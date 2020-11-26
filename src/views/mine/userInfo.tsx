@@ -1,6 +1,6 @@
-import React from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store/reducer";
+import React from "react"
+import {useSelector} from "react-redux"
+import {RootState} from "../../store/reducer"
 import {UserInfoBox} from './style'
 
 const UserInfo = () => {

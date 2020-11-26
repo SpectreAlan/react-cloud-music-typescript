@@ -1,9 +1,9 @@
-import React, {useRef, useCallback} from 'react';
+import React, {useRef, useCallback} from 'react'
 import {Container} from './style'
 import UserInfo from './userInfo'
 import Nav from './nav'
 import SongList from './songList'
-import Scroll from "../../components/scroll";
+import Scroll from "../../components/scroll"
 import {ScrollContainer} from './style'
 
 const Mine = () => {

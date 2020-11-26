@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store/reducer";
+import React, {useEffect, useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import {RootState} from "../../store/reducer"
 import {ListContainer} from './style'
-import {getCollect} from "../../store/modules/user/actions";
-import {ISongListItem, ISongList} from "../../store/modules/user/reducer";
-import {useHistory} from 'react-router';
+import {getCollect} from "../../store/modules/user/actions"
+import {ISongListItem, ISongList} from "../../store/modules/user/reducer"
+import {useHistory} from 'react-router'
 
 interface InterfaceProps {
   refresh: Function
