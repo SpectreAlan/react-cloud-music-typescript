@@ -1,10 +1,10 @@
-import React from "react";
-import {useSelector} from 'react-redux';
-import {renderRoutes, RouteConfigComponentProps} from "react-router-config";
-import {Tab} from './style';
-import {NavLink} from "react-router-dom";
-import {RootState} from "../../store/reducer";
-import Player from "../Player";
+import React from "react"
+import {useSelector} from 'react-redux'
+import {renderRoutes, RouteConfigComponentProps} from "react-router-config"
+import {Tab} from './style'
+import {NavLink} from "react-router-dom"
+import {RootState} from "../../store/reducer"
+import Player from "../Player"
 
 // import Player from "../application/Player/index";
 
