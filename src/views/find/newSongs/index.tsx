@@ -1,5 +1,5 @@
 import React from 'react'
-import {ITracks, ITrack} from "../../../interface";
+import {ITracks, ITrack} from "../../../interface"
 import {Container} from './style'
 import Slider from '../../../components/slider'
 import SongsList from '../../../layouts/SongList'
