@@ -4,7 +4,7 @@ export interface IrouteItem {
   icon: string;
 }
 
-export type IRoutes = IrouteItem[];
+export type IRoutes = IrouteItem[]
 
 export const routes: IRoutes = [
   {name: '每日推荐', path: '/dailyRecommendation', icon: '&#xe89e;'},

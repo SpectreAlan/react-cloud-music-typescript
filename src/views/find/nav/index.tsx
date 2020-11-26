@@ -1,6 +1,6 @@
-import React from 'react';
-import {useHistory} from 'react-router';
-import Scroll from '../../../components/scroll';
+import React from 'react'
+import {useHistory} from 'react-router'
+import Scroll from '../../../components/scroll'
 import {Container} from './style'
 import {routes} from './routes'
 
