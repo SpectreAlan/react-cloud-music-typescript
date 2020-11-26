@@ -1,6 +1,6 @@
-import types from './actionTypes';
-import {AnyAction} from 'redux';
-import {produce} from 'immer';
+import types from './actionTypes'
+import {AnyAction} from 'redux'
+import {produce} from 'immer'
 
 export interface ISongListItem {
   id: number;
@@ -42,21 +42,21 @@ const defaultState: UserState = {
 export const userReducer = produce((state, action: AnyAction) => {
   switch (action.type) {
     case types.LOADING:
-      state.loading = action.data;
+      state.loading = action.data
       break;
     case types.COLLECT:
-      state.collect = action.data;
+      state.collect = action.data
       break;
     case types.RECORD:
-      state.record = action.data;
+      state.record = action.data
       break
     case types.INFO:
-      state.info = action.data;
+      state.info = action.data
       break;
     case types.RESET:
-      state.info = defaultState;
-      state.record = [];
-      state.collect = [];
+      state.info = defaultState
+      state.record = []
+      state.collect = []
       break;
   }
-}, defaultState);
+}, defaultState)
