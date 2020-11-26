@@ -1,4 +1,3 @@
-// 播放模式
 export enum playMode {
   sequence = 0,
   loop = 1,
