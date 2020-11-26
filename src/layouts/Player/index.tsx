@@ -5,6 +5,7 @@ import {changePause, changeIndex} from '../../store/modules/player/actions'
 import {getPlayUrl} from '../../utils'
 import {playMode} from '../../config/player'
 import Mini from './mini'
+import Normal from './normal'
 
 const Player = () => {
   const audioRef = useRef(null)
@@ -63,6 +64,10 @@ const Player = () => {
   }
   return (<>
     <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/>
+    {
+      index > -1 ?
+        <Normal img={cover} duration={duration} pause={pause} currentTime={currentTime} song={playList[index]}/> : ''
+    }
     <audio
       ref={audioRef}
       onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}
