@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 import {IMv} from '../../store/modules/mv/reducer'
-import Scroll from "../../components/scroll";
-import LazyLoad, {forceCheck} from "react-lazyload";
-import {Control, Img, ScrollContainer} from "./style";
-import {formatDuration, getCount} from "../../utils";
+import Scroll from "../../components/scroll"
+import LazyLoad, {forceCheck} from "react-lazyload"
+import {Control, Img, ScrollContainer} from "./style"
+import {formatDuration, getCount} from "../../utils"
 
 interface MvInterface {
   list: IMv

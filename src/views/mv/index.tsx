@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from "react-redux";
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from "react-redux"
 import {RootState} from "../../store/reducer";
-import {getMv, getTypes} from "../../store/modules/mv/actions";
-import Loading from "../../components/loading";
-import Search from "../../components/search";
+import {getMv, getTypes} from "../../store/modules/mv/actions"
+import Loading from "../../components/loading"
+import Search from "../../components/search"
 import Nav from './nav'
 import MvList from './mvList'
 
