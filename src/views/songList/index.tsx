@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"
 import SongListPage from '../../layouts/SongListPage'
 import Loading from '../../components/loading'
-import {getSongListRequest} from "../../api/common";
-import {getName} from "../../utils";
+import {getSongListRequest} from "../../api/common"
+import {getName} from "../../utils"
 import {ISongListProps, ITracks} from '../../interface'
 
 const DailyRecommendation = (props: any) => {
