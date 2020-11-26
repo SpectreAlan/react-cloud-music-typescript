@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2.0) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+
+/* 3倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 3.0) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.33);
+    transform: scaleY(0.33);
+    color: rgb(151, 127, 127);
+  }
+}
