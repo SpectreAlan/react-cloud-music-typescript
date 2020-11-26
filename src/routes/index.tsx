@@ -1,6 +1,6 @@
-import React, {lazy, Suspense, LazyExoticComponent} from 'react';
-import {Redirect} from 'react-router-dom';
-import Home from '../layouts/Home';
+import React, {lazy, Suspense, LazyExoticComponent} from 'react'
+import {Redirect} from 'react-router-dom'
+import Home from '../layouts/Home'
 
 const SuspenseComponent = (Component: LazyExoticComponent<any>) => (props: any) => (
   <Suspense fallback={null}>
