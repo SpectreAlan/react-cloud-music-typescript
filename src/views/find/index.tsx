@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from "react-redux";
-import {RouteConfigComponentProps} from 'react-router-config';
-import {forceCheck} from 'react-lazyload';
-import {RootState} from '../../store/reducer';
-import {getBanner, getRecommend, getNewSong, changeFinishCount} from '../../store/modules/find/actions';
-import Search from "../../components/search";
-import Scroll from "../../components/scroll";
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from "react-redux"
+import {RouteConfigComponentProps} from 'react-router-config'
+import {forceCheck} from 'react-lazyload'
+import {RootState} from '../../store/reducer'
+import {getBanner, getRecommend, getNewSong, changeFinishCount} from '../../store/modules/find/actions'
+import Search from "../../components/search"
+import Scroll from "../../components/scroll"
 import Nav from './nav'
 import {ScrollContainer} from '../../assets/style/base'
 import NewSongs from "./newSongs";
