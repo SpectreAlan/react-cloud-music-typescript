@@ -33,7 +33,7 @@ export const style = {
   'font-color': '#909090',
   'font-color-light-shadow': 'rgba(241, 241, 241, 0.6)', // 略淡
   'font-color-desc': '#2E3030',
-  'font-color-desc-v2': '#bba8a8', // 略淡
+  'font-color-desc-v2': '#bba8a8',
   'font-size-ss': '10px',
   'font-size-s': '12px',
   'font-size-m': '14px',
