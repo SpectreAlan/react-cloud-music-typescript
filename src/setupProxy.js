@@ -1,5 +1,6 @@
-const {createProxyMiddleware} = require('http-proxy-middleware');
+const {createProxyMiddleware} = require('http-proxy-middleware')
 const defaultSettings = require('./config/settings')
+
 module.exports = (app) => {
   app.use(
     createProxyMiddleware(defaultSettings.baseUrl, {
@@ -10,5 +11,5 @@ module.exports = (app) => {
         ['^' + defaultSettings.baseUrl]: ''
       }
     })
-  );
-};
+  )
+}
