@@ -5,6 +5,7 @@ import Scroll from '../../components/scroll'
 import SongList from '../SongList'
 import {forceCheck} from 'react-lazyload'
 import {ISongListProps} from '../../interface'
+import {getCount} from '../../utils'
 
 interface IInfo {
   info: ISongListProps
@@ -77,7 +78,7 @@ const SongListPage = (props: IInfo) => {
         </div>
         <div className='item'>
           <i className='iconfont' onClick={()=>{subscribe()}}>&#xe619;</i>
-          <span>{subscribedCount}</span>
+          <span>{getCount(subscribedCount)}</span>
         </div>
       </ToolBar>
       <ScrollContainer ref={listRef}>
@@ -102,7 +103,7 @@ const SongListPage = (props: IInfo) => {
                     <p>{commentCount}</p>
                   </li>
                   <li>
-                    <i className='iconfont'>&#xe774;</i>
+                    <i className='iconfont'>&#xe65c;</i>
                     <p>{shareCount}</p>
                   </li>
                   <li>
@@ -110,7 +111,7 @@ const SongListPage = (props: IInfo) => {
                     <p>下载</p>
                   </li>
                   <li>
-                    <i className='iconfont'>&#xe611;</i>
+                    <i className='iconfont'>&#xe669;</i>
                     <p>多选</p>
                   </li>
                 </ul>
