@@ -1,7 +1,8 @@
 import React from "react";
+import {useDispatch} from "react-redux";
 import {Container} from "./style";
 import {ITrack} from "../../../interface";
-
+import {changeFullScreen} from '../../../store/modules/player/actions'
 
 interface InterfaceProps {
   img: string;
@@ -13,7 +14,9 @@ interface InterfaceProps {
 
 const NormalPlayer = (props: InterfaceProps) => {
   const {img, duration, currentTime, pause, song} = props
+  const dispatch = useDispatch()
   const hide = () => {
+    dispatch(changeFullScreen(false))
   }
   return (
     <Container>

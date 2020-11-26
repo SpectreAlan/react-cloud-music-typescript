@@ -3,7 +3,7 @@ import {useDispatch,useSelector} from "react-redux";
 import {ITracks, ITrack} from "../../interface";
 import {Container} from "./style"
 import {RootState} from "../../store/reducer";
-import {changeIndex, changePlayList} from "../../store/modules/player/actions";
+import {changeIndex, changePlayList, changeFullScreen} from "../../store/modules/player/actions";
 
 interface InterfaceSongList {
   list: ITracks
@@ -18,6 +18,7 @@ const SongList = (props:InterfaceSongList)=>{
     const index = playList.length
     dispatch(changePlayList({list: [song], type: 1}))
     dispatch(changeIndex(index))
+    dispatch(changeFullScreen(true))
   }
   return (
     <Container>

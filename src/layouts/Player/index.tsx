@@ -14,11 +14,12 @@ const Player = () => {
   const [cover, setCover] = useState('')
   const [duration, setDuration] = useState(0)
 
-  const {index, playList, pause, mode} = useSelector((state: RootState) => ({
+  const {index, playList, pause, mode, fullScreen} = useSelector((state: RootState) => ({
     index: state.player.index,
     playList: state.player.playList,
     pause: state.player.pause,
     mode: state.player.mode,
+    fullScreen: state.player.fullScreen,
   }));
   useEffect(() => {
     if (!playList.length || index === -1 || !playList[index]) {
@@ -63,9 +64,11 @@ const Player = () => {
     dispatch(changeIndex(i))
   }
   return (<>
-    <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/>
     {
-      index > -1 ?
+      index > -1 && !fullScreen ? <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/> : ''
+    }
+    {
+      index > -1 && fullScreen ?
         <Normal img={cover} duration={duration} pause={pause} currentTime={currentTime} song={playList[index]}/> : ''
     }
     <audio
