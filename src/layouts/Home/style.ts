@@ -24,7 +24,7 @@ export const Tab = styled.div`
       border-radius: 50%;
     }
     span{
-      line-height: 18px;
+      line-height: 18px
     }
     &.selected{
        color: ${style['theme-color']};
