@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {SpectrumContainer} from './style'
 
 const Loading = () => (
