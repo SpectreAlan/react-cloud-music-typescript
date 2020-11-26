@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useRef, useState} from 'react';
+import React, {ReactNode, useEffect, useRef, useState} from 'react'
 import BScroll from '@better-scroll/core'
 import Slide from '@better-scroll/slide'
 import {Container} from './style'
