@@ -28,7 +28,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   const [touching, setTouching] = useState(false)
 
   useEffect(() => {
-    if(!touching){
+    if(!touching){ // 非拖拽状态正常渲染进度条
       const duration = playList[index].duration
       const l = 1000 * width * currentTime / duration
       setLeft(l)
@@ -49,7 +49,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   const handleProgressClick = (e: any) => { // 点击切换播放进度
     // 鼠标点击坐标 = 鼠标相对Document点击的x轴坐标 - 进度条相对Document的偏移量
     // @ts-ignore
-    const offsetWidth = e.pageX - progressRef.current.getBoundingClientRect().left
+    const offsetWidth = e.pageX - progressRef.current.getBoundingClientRect().left - 4
     setLeft(offsetWidth)
     const duration = playList[index].duration
     const time = duration * offsetWidth / 1000 / width
@@ -65,7 +65,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   }
   const onTouchMove = (e: any) => {
     // @ts-ignore
-    let x = e.touches[0].pageX - progressRef.current.getBoundingClientRect().left
+    let x = e.touches[0].pageX - progressRef.current.getBoundingClientRect().left - 4
     x = x < 0 ? 0 : x
     x = x > width ? width : x
     setLeft(x)
