@@ -7,7 +7,8 @@ import {formatDuration} from '../../../utils'
 
 interface InterfaceProps {
   currentTime: number;
-  changeSong: Function
+  changeSong: Function;
+  changeCurrentTime: Function;
 }
 
 const NormalPlayer = (props: InterfaceProps) => {
@@ -19,7 +20,7 @@ const NormalPlayer = (props: InterfaceProps) => {
     mode: state.player.mode,
   }));
 
-  const {currentTime, changeSong} = props
+  const {currentTime, changeSong, changeCurrentTime} = props
   const progressRef = useRef(null)
   const dispatch = useDispatch()
   const [left, setLeft] = useState(0)
@@ -41,6 +42,16 @@ const NormalPlayer = (props: InterfaceProps) => {
   const hide = () => { // 关闭全屏播放器
     dispatch(changeFullScreen(false))
   }
+
+  const handlerProgressClick = (e: any) => { // 点击切换播放进度
+    // @ts-ignore
+    const rect = progressRef.current.getBoundingClientRect();
+    const offsetWidth = e.pageX - rect.left;
+    setLeft(offsetWidth);
+    const duration = playList[index].duration
+    const time = duration * offsetWidth / 1000 / width
+    changeCurrentTime(time)
+  };
 
   const handleChangeMode = () => { // 切换播放模式
     const m = mode === 2 ? 0 : mode + 1
@@ -71,7 +82,7 @@ const NormalPlayer = (props: InterfaceProps) => {
           </div>
           <div className="progress">
             <span className='currentTime'>{formatDuration(currentTime * 1000)}</span>
-            <div className="line" ref={progressRef}>
+            <div className="line" ref={progressRef} onClick={handlerProgressClick}>
               <i className='circle' style={{left: left}}/>
             </div>
             <span className='duration'>{formatDuration(song.duration)}</span>

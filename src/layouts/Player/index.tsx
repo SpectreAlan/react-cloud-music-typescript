@@ -42,8 +42,8 @@ const Player = () => {
     // @ts-ignore
     pause ? audioRef.current.pause() : audioRef.current.play();
   }, [pause])
+
   const changeSong = (param: number) => {
-    console.log(param)
     let i = -1
     const lastIndex = playList.length - 1
     switch (mode) {
@@ -70,6 +70,15 @@ const Player = () => {
     }
     dispatch(changeIndex(i))
   }
+  const changeCurrentTime = (time: number)=>{
+    // @ts-ignore
+    audioRef.current.currentTime = time
+    if(pause){
+      dispatch(changePause(false))
+      // @ts-ignore
+      audioRef.current.play()
+    }
+  }
   const onError = () => {
     const i = (index === playList.length - 1) ? 0 : index + 1
     dispatch(changeIndex(i))
@@ -80,7 +89,7 @@ const Player = () => {
     }
     {
       index > -1 && fullScreen ?
-        <Normal currentTime={currentTime} changeSong={changeSong}/> : ''
+        <Normal currentTime={currentTime} changeSong={changeSong} changeCurrentTime={changeCurrentTime}/> : ''
     }
     <audio
       ref={audioRef}
