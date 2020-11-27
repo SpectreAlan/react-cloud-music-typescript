@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {animation} from '../mini/style'
+import {style} from "../../../assets/style/base";
 
 interface InterfaceProps {
   img: string;
@@ -113,5 +114,83 @@ export const Container = styled.div`
         }
       }
     }
+  }
+`
+export const ListContainer = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+background: transparent;
+.content{
+  box-sizing: border-box;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  padding: 12px;
+  background: #fff;
+  position: absolute;
+  z-index: 667;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 350px;
+  width: 100%;
+  h3{
+    margin-bottom: 12px;
+    font-size: 15px;
+    span{
+      color: lightslategrey;
+      font-size: 12px;
+    }
+  }
+  .control{
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    i{
+      font-size: 20px;
+    }
+  }
+  .list{
+    height: 245px;
+    overflow: hidden;
+    width: 100%;
+    li{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(200,200,200,0.2);
+      padding-bottom: 8px;
+      div{
+        color: #000;
+        font-size: 15px;
+        span{
+          color: lightslategrey;
+          font-size: 12px;
+        }
+      }
+      i{
+        color: lightslategrey;
+      }
+    }
+    .cur{
+      color: ${style['theme-color']}
+    }
+  }
+  .close{
+    font-size: 14px;
+    text-align: center;
+  }
+}
+.mask{
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 666;
   }
 `

@@ -4,6 +4,7 @@ import {Container} from "./style";
 import {changeFullScreen, changePause, changeMode} from '../../../store/modules/player/actions'
 import {RootState} from "../../../store/reducer";
 import {formatDuration} from '../../../utils'
+import PlayList from "./playList";
 
 interface InterfaceProps {
   currentTime: number;
@@ -17,7 +18,7 @@ const NormalPlayer = (props: InterfaceProps) => {
     index: state.player.index,
     playList: state.player.playList,
     pause: state.player.pause,
-    mode: state.player.mode,
+    mode: state.player.mode
   }));
 
   const {currentTime, changeSong, changeCurrentTime} = props
@@ -26,6 +27,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   const [left, setLeft] = useState(0)
   const [width, setWidth] = useState(230)
   const [touching, setTouching] = useState(false)
+  const [playListVisible, setPlayListVisible] = useState(false)
 
   useEffect(() => {
     if(!touching){ // 非拖拽状态正常渲染进度条
@@ -76,6 +78,9 @@ const NormalPlayer = (props: InterfaceProps) => {
     changeCurrentTime(time)
     setTouching(false)
   }
+  const handlePlayListVisible  = ()=>{
+    setPlayListVisible(!playListVisible)
+  }
   const song = playList[index]
   return (
     <Container img={song.img} pause={pause}>
@@ -118,10 +123,13 @@ const NormalPlayer = (props: InterfaceProps) => {
             <i className='iconfont' onClick={() => dispatch(changePause(!pause))}
                dangerouslySetInnerHTML={{__html: pause ? '&#xe61a;' : '&#xe774;'}}/>
             <i className='iconfont' onClick={() => changeSong(1)}>&#xe7ff;</i>
-            <i className='iconfont' onClick={hide}>&#xe6a7;</i>
+            <i className='iconfont' onClick={handlePlayListVisible}>&#xe6a7;</i>
           </div>
         </div>
       </div>
+      {
+        playListVisible ? <PlayList handlePlayListVisible={handlePlayListVisible}/> : ''
+      }
     </Container>
   )
 }

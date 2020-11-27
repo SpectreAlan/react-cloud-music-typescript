@@ -49,12 +49,8 @@ const Player = () => {
     switch (mode) {
       case playMode.sequence: // 顺序播放
         i = index + param
-        if (i > lastIndex) {
-          i = 0
-        }
-        if (i < 0) {
-          i = lastIndex
-        }
+        i = i > lastIndex ? 0 : i
+        i = i < 0 ? lastIndex : i
         break
       case playMode.random: // 随机播放
         i = parseInt(String(Math.random() * (lastIndex + 1)))
@@ -70,10 +66,10 @@ const Player = () => {
     }
     dispatch(changeIndex(i))
   }
-  const changeCurrentTime = (time: number)=>{
+  const changeCurrentTime = (time: number) => {
     // @ts-ignore
     audioRef.current.currentTime = time
-    if(pause){
+    if (pause) {
       dispatch(changePause(false))
       // @ts-ignore
       audioRef.current.play()
