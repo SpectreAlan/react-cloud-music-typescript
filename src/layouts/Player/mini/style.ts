@@ -1,7 +1,7 @@
 import styled, {keyframes} from "styled-components";
 import {style} from "../../../assets/style/base";
 
-const animation = keyframes`
+export const animation = keyframes`
   0% {
     transform: rotate(0deg);
     transform-origin: center center;

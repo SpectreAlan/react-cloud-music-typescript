@@ -21,6 +21,7 @@ const Player = () => {
     mode: state.player.mode,
     fullScreen: state.player.fullScreen,
   }));
+
   useEffect(() => {
     if (!playList.length || index === -1 || !playList[index]) {
       return
@@ -37,18 +38,28 @@ const Player = () => {
     setCover(song.img)
     setDuration((song.duration / 1000) | 0);
   }, [index, playList, dispatch]);
-
-  const onEnded = () => {
+  useEffect(() => {
+    // @ts-ignore
+    pause ? audioRef.current.pause() : audioRef.current.play();
+  }, [pause])
+  const changeSong = (param: number) => {
+    console.log(param)
     let i = -1
     const lastIndex = playList.length - 1
     switch (mode) {
-      case playMode.sequence:
-        i = (index === lastIndex) ? 0 : index + 1
+      case playMode.sequence: // 顺序播放
+        i = index + param
+        if (i > lastIndex) {
+          i = 0
+        }
+        if (i < 0) {
+          i = lastIndex
+        }
         break
-      case playMode.random:
+      case playMode.random: // 随机播放
         i = parseInt(String(Math.random() * (lastIndex + 1)))
         break
-      case playMode.loop:
+      case playMode.loop: // 单曲循环
         // @ts-ignore
         audioRef.current.currentTime = 0;
         dispatch(changePause(false));
@@ -69,12 +80,14 @@ const Player = () => {
     }
     {
       index > -1 && fullScreen ?
-        <Normal img={cover} duration={duration} pause={pause} currentTime={currentTime} song={playList[index]}/> : ''
+        <Normal currentTime={currentTime} changeSong={changeSong}/> : ''
     }
     <audio
       ref={audioRef}
       onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}
-      onEnded={onEnded}
+      onEnded={() => {
+        changeSong(1)
+      }}
       onError={onError}
     />
   </>)
