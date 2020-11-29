@@ -69,7 +69,7 @@ const SongListPage = (props: IInfo) => {
           <div/>
         </div>
       </Top>
-      <Cover ref={coverRef} img={coverImgUrl}/>
+      <Cover ref={coverRef} img={coverImgUrl}><div/></Cover>
       <ToolBar ref={toolbarRef}>
         <div className='item'>
           <i className='iconfont'>&#xe774;</i>

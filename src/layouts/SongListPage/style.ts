@@ -27,6 +27,7 @@ export const Top = styled.div`
   }
   .iconfont{
     font-size: 22px;
+    color: #fff;
   }
   img{
     position: absolute;
@@ -72,6 +73,14 @@ export const Cover = styled.div`
   overflow: hidden;
   background: url(${(props: InterfaceImg) => props.img}) no-repeat;
   background-size: cover;
+  div{
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
 `
 export const ScrollContainer = styled.div`
   position: fixed;
@@ -98,9 +107,7 @@ export const ScrollContainer = styled.div`
             margin-left: 10px;
             width: 220px;
             position: relative;
-            background-color:rgba(0,0,0,0.5);
             padding: 10px;
-            border-radius: 8px;
             color: #fff;
             .name{
               font-size: 16px;
@@ -122,7 +129,6 @@ export const ScrollContainer = styled.div`
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            border: 4px solid #fff;
           }
         }
         .icons{
@@ -131,7 +137,7 @@ export const ScrollContainer = styled.div`
           li{
             text-align: center;
             i{
-              font-size: 22px;
+              font-size: 25px;
               color: #fff;
             }
             p{
