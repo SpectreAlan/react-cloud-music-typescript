@@ -43,7 +43,7 @@ const Player = () => {
       })
     }
 
-  }, [index]);
+  }, [index, playList]);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {

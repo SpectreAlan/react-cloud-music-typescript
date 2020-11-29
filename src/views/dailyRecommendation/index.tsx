@@ -12,6 +12,7 @@ const DailyRecommendation = () => {
   const [info, setInfo] = useState<ISongListProps>({
     tracks: [],
     trackCount: 0,
+    id: -1,
     shareCount: 0,
     commentCount: 0,
     name: '',
@@ -54,6 +55,7 @@ const DailyRecommendation = () => {
         shareCount: 0,
         commentCount: 0,
         subscribedCount: 0,
+        id: -1,
         subscribed: false
       })
       setLoading(false)

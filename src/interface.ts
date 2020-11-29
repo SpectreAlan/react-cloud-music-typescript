@@ -21,4 +21,5 @@ export interface ISongListProps {
   avatarUrl: string;
   subscribedCount: number;
   subscribed: boolean;
+  id: number
 }

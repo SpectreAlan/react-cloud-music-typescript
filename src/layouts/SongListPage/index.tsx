@@ -6,19 +6,23 @@ import SongList from '../SongList'
 import {forceCheck} from 'react-lazyload'
 import {ISongListProps} from '../../interface'
 import {getCount} from '../../utils'
+import {playListSubscribeRequest} from '../../api/common'
+import {changePlayList, changeIndex, changeFullScreen} from '../../store/modules/player/actions'
+import {useDispatch} from "react-redux";
 
 interface IInfo {
   info: ISongListProps
 }
 
 const SongListPage = (props: IInfo) => {
-  const {tracks, coverImgUrl, name, creator, avatarUrl, trackCount, shareCount, commentCount, subscribedCount, subscribed} = props.info
+  const {tracks, coverImgUrl, name, creator, avatarUrl, trackCount, shareCount, commentCount, subscribedCount, subscribed, id} = props.info
   const listRef = useRef(null)
   const toolbarRef = useRef(null)
   const coverRef = useRef(null)
   const titleRef = useRef(null)
   const headRef = useRef(null)
   const router = useHistory()
+  const dispatch = useDispatch()
 
   const onScroll = useCallback((pos) => {
     if (!toolbarRef) {
@@ -55,9 +59,19 @@ const SongListPage = (props: IInfo) => {
     }
   }, [])
 
-  const subscribe = ()=>{
-    if(subscribed){return}
-    console.log('subscribe')
+  const subscribe = () => {
+    playListSubscribeRequest(id, subscribed ? 2: 1).then(res=>{
+      if(res.data.code === 200){
+        console.log('操作成功')
+      }
+    }).catch(e=>{
+      console.log('操作失败')
+    })
+  }
+  const playAll = () => {
+    dispatch(changePlayList({type: 2, list: tracks}))
+    dispatch(changeIndex(0))
+    dispatch(changeFullScreen(true))
   }
 
   return (
@@ -69,15 +83,19 @@ const SongListPage = (props: IInfo) => {
           <div/>
         </div>
       </Top>
-      <Cover ref={coverRef} img={coverImgUrl}><div/></Cover>
+      <Cover ref={coverRef} img={coverImgUrl}>
+        <div/>
+      </Cover>
       <ToolBar ref={toolbarRef}>
-        <div className='item'>
+        <div className='item' onClick={() => playAll()}>
           <i className='iconfont'>&#xe774;</i>
           <span>播放全部</span>
           <span className='count'>(共{trackCount}首)</span>
         </div>
         <div className='item'>
-          <i className='iconfont' onClick={()=>{subscribe()}}>&#xe619;</i>
+          <i className='iconfont' onClick={() => {
+            subscribe()
+          }}>&#xe619;</i>
           <span>{getCount(subscribedCount)}</span>
         </div>
       </ToolBar>

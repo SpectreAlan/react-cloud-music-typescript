@@ -17,12 +17,13 @@ const DailyRecommendation = (props: any) => {
     creator: '',
     avatarUrl: '',
     subscribed: false,
-    subscribedCount: 0
+    subscribedCount: 0,
+    id: -1
   })
   useEffect(() => {
     setLoading(true)
     getSongListRequest(props.location.state.id).then(res => {
-      const {tracks, coverImgUrl, name, creator, trackCount, shareCount, commentCount, subscribedCount, subscribed} = res.data.playlist
+      const {tracks, coverImgUrl, name, creator, trackCount, shareCount, commentCount, subscribedCount, subscribed, id} = res.data.playlist
       const {avatarUrl, nickname} = creator
       const list: ITracks = []
       // eslint-disable-next-line array-callback-return
@@ -37,7 +38,7 @@ const DailyRecommendation = (props: any) => {
           singer: getName(item.ar)
         })
       })
-      setInfo({tracks: list, coverImgUrl, name, creator: nickname, avatarUrl, trackCount, shareCount, commentCount, subscribedCount, subscribed})
+      setInfo({tracks: list, coverImgUrl, name, creator: nickname, avatarUrl, trackCount, shareCount, commentCount, subscribedCount, subscribed, id})
       setLoading(false)
     })
   }, [])
