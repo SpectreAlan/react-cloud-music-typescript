@@ -4,6 +4,6 @@ const types = {
   PLAY_LIST: 'player/PLAY_LIST',
   MODE: 'player/MODE',
   INDEX: 'player/INDEX',
-  PLAY_LIST_VISIBLE: 'player/PLAY_LIST_VISIBLE',
+  PLAY_NEXT: 'player/PLAY_NEXT',
 }
 export default types

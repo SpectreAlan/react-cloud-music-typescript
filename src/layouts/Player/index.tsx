@@ -14,16 +14,17 @@ const Player = () => {
   const [cover, setCover] = useState('')
   const [duration, setDuration] = useState(0)
 
-  const {index, playList, pause, mode, fullScreen} = useSelector((state: RootState) => ({
+  const {index, playList, pause, mode, fullScreen, playNext} = useSelector((state: RootState) => ({
     index: state.player.index,
     playList: state.player.playList,
     pause: state.player.pause,
     mode: state.player.mode,
     fullScreen: state.player.fullScreen,
+    playNext: state.player.playNext
   }));
 
   useEffect(() => {
-    if (!playList.length || index === -1 || !playList[index]) {
+    if (!playList.length || index === -1 || !playList[index] || !playNext) {
       return
     }
     const song = playList[index];
@@ -37,7 +38,7 @@ const Player = () => {
     setCurrentTime(0);
     setCover(song.img)
     setDuration((song.duration / 1000) | 0);
-  }, [index, playList, dispatch]);
+  }, [index, playList]);
 
   useEffect(() => {
     if (audioRef && audioRef.current) {
@@ -50,7 +51,6 @@ const Player = () => {
     if (!playList.length) {
       dispatch(changeIndex(-1))
       dispatch(changeFullScreen(false))
-      console.log(index, fullScreen)
     }
   }, [playList])
   const changeSong = (param: number) => {

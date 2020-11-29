@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {ListContainer} from './style'
 import Scroll from "../../../components/scroll";
 import {RootState} from "../../../store/reducer";
-import {changePlayList, changeIndex, changeFullScreen} from '../../../store/modules/player/actions'
+import {changePlayList, changeIndex, changeFullScreen, changePlayNext} from '../../../store/modules/player/actions'
 
 interface InterfaceProps {
   handlePlayListVisible: Function
@@ -16,8 +16,16 @@ const PlayList = (props: InterfaceProps) => {
     index: state.player.index,
     playList: state.player.playList
   }));
-  const del = (index: number) => {
-    dispatch(changePlayList({index, type: -1}))
+  const del = (i: number) => {
+    dispatch(changePlayList({index: i, type: -1}))
+    if (i < index) {
+      dispatch(changeIndex(index - 1))
+      dispatch(changePlayNext(false))
+    } else if (i === index) {
+      dispatch(changePlayNext(true))
+    } else {
+      dispatch(changePlayNext(false))
+    }
   }
   const clear = () => {
     dispatch(changeFullScreen(false))

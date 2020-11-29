@@ -25,8 +25,8 @@ export const changeMode = (data: playMode) => ({
   data
 })
 
-export const changePlayListVisible = (data: boolean) => ({
-  type: types.PLAY_LIST_VISIBLE,
+export const changePlayNext = (data: boolean) => ({
+  type: types.PLAY_NEXT,
   data
 })
 

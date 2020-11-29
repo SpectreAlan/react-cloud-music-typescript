@@ -178,7 +178,7 @@ background: transparent;
     }
     .cur{
       color: ${style['theme-color']}
-      div{
+      >div{
         color: ${style['theme-color']}
         span{
           color: ${style['theme-color']}
