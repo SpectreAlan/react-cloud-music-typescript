@@ -30,7 +30,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   const [playListVisible, setPlayListVisible] = useState(false)
 
   useEffect(() => {
-    if(!touching){ // 非拖拽状态正常渲染进度条
+    if (!touching) { // 非拖拽状态正常渲染进度条
       const duration = playList[index].duration
       const l = 1000 * width * currentTime / duration
       setLeft(l)
@@ -78,59 +78,63 @@ const NormalPlayer = (props: InterfaceProps) => {
     changeCurrentTime(time)
     setTouching(false)
   }
-  const handlePlayListVisible  = ()=>{
+  const handlePlayListVisible = () => {
     setPlayListVisible(!playListVisible)
   }
   const song = playList[index]
   return (
-    <Container img={song.img} pause={pause}>
-      <div className="content">
-        <div className="top">
-          <i className='iconfont' onClick={hide}>&#xe63a;</i>
-          <div className="center">
-            <span>{song.name}</span>
-            <p>{song.singer}</p>
-          </div>
-          <i className='iconfont' onClick={hide}>&#xe65c;</i>
-        </div>
-        <div className='rotate'>
-          <img src={song.img} alt="music"/>
-        </div>
-        <div className="bottom">
-          <div className="icons">
-            <i className='iconfont' onClick={hide}>&#xe688;</i>
-            <i className='iconfont' onClick={hide}>&#xe626;</i>
-            <i className='iconfont' onClick={hide}>&#xe865;</i>
-            <i className='iconfont' onClick={hide}>&#xe71f;</i>
-          </div>
-          <div className="progress">
-            <span className='currentTime'>{formatDuration(currentTime * 1000)}</span>
-            <div className="line" ref={progressRef} onClick={handleProgressClick}>
-              <i
-                className='circle'
-                style={{left: left}}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-              />
-            </div>
-            <span className='duration'>{formatDuration(song.duration)}</span>
-          </div>
-          <div className="control">
-            <i className='iconfont' onClick={handleChangeMode}
-               dangerouslySetInnerHTML={{__html: ['&#xe60a;', '&#xe66d;', '&#xe77d;'][mode]}}/>
-            <i className='iconfont' onClick={() => changeSong(-1)}>&#xe800;</i>
-            <i className='iconfont' onClick={() => dispatch(changePause(!pause))}
-               dangerouslySetInnerHTML={{__html: pause ? '&#xe61a;' : '&#xe774;'}}/>
-            <i className='iconfont' onClick={() => changeSong(1)}>&#xe7ff;</i>
-            <i className='iconfont' onClick={handlePlayListVisible}>&#xe6a7;</i>
-          </div>
-        </div>
-      </div>
+    <>
       {
-        playListVisible ? <PlayList handlePlayListVisible={handlePlayListVisible}/> : ''
+        song ? <Container img={song.img} pause={pause}>
+          <div className="content">
+            <div className="top">
+              <i className='iconfont' onClick={hide}>&#xe63a;</i>
+              <div className="center">
+                <span>{song.name}</span>
+                <p>{song.singer}</p>
+              </div>
+              <i className='iconfont' onClick={hide}>&#xe65c;</i>
+            </div>
+            <div className='rotate'>
+              <img src={song.img} alt="music"/>
+            </div>
+            <div className="bottom">
+              <div className="icons">
+                <i className='iconfont' onClick={hide}>&#xe688;</i>
+                <i className='iconfont' onClick={hide}>&#xe626;</i>
+                <i className='iconfont' onClick={hide}>&#xe865;</i>
+                <i className='iconfont' onClick={hide}>&#xe71f;</i>
+              </div>
+              <div className="progress">
+                <span className='currentTime'>{formatDuration(currentTime * 1000)}</span>
+                <div className="line" ref={progressRef} onClick={handleProgressClick}>
+                  <i
+                    className='circle'
+                    style={{left: left}}
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                  />
+                </div>
+                <span className='duration'>{formatDuration(song.duration)}</span>
+              </div>
+              <div className="control">
+                <i className='iconfont' onClick={handleChangeMode}
+                   dangerouslySetInnerHTML={{__html: ['&#xe60a;', '&#xe66d;', '&#xe77d;'][mode]}}/>
+                <i className='iconfont' onClick={() => changeSong(-1)}>&#xe800;</i>
+                <i className='iconfont' onClick={() => dispatch(changePause(!pause))}
+                   dangerouslySetInnerHTML={{__html: pause ? '&#xe774;' : '&#xe61a;'}}/>
+                <i className='iconfont' onClick={() => changeSong(1)}>&#xe7ff;</i>
+                <i className='iconfont' onClick={handlePlayListVisible}>&#xe6a7;</i>
+              </div>
+            </div>
+          </div>
+          {
+            playListVisible ? <PlayList handlePlayListVisible={handlePlayListVisible}/> : ''
+          }
+        </Container> : ''
       }
-    </Container>
+    </>
   )
 }
 

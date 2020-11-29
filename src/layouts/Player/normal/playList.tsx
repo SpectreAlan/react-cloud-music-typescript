@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {ListContainer} from './style'
 import Scroll from "../../../components/scroll";
 import {RootState} from "../../../store/reducer";
-import {changePlayList} from '../../../store/modules/player/actions'
+import {changePlayList, changeIndex, changeFullScreen} from '../../../store/modules/player/actions'
 
 interface InterfaceProps {
   handlePlayListVisible: Function
@@ -19,13 +19,18 @@ const PlayList = (props: InterfaceProps) => {
   const del = (index: number) => {
     dispatch(changePlayList({index, type: -1}))
   }
+  const clear = () => {
+    dispatch(changeFullScreen(false))
+    dispatch(changeIndex(-1))
+    dispatch(changePlayList({type: 0}))
+  }
   return (
     <ListContainer>
       <div className="content">
         <h3>当前播放<span>({playList.length})</span></h3>
         <div className="control">
           <span><i className='iconfont'>&#xe6e0;</i>收藏全部</span>
-          <span>清空播放列表<i className='iconfont'>&#xe63c;</i></span>
+          <span onClick={clear}>清空播放列表<i className='iconfont'>&#xe63c;</i></span>
         </div>
         <div className="list">
           <Scroll>
@@ -33,7 +38,7 @@ const PlayList = (props: InterfaceProps) => {
               {
                 playList.map((item, i) => (
                   <li key={i} className={index === i ? 'cur' : ''}>
-                    <div>
+                    <div onClick={() => dispatch(changeIndex(i))}>
                       {item.name}<span> - {item.singer}</span>
                     </div>
                     <i className='iconfont' onClick={() => del(i)}>&#xe63c;</i>

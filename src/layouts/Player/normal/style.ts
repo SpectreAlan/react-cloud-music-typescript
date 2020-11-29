@@ -23,7 +23,8 @@ export const Container = styled.div`
     background: rgba(255,255,255,0.8);
     .top{
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+      padding: 0 8px;
       height: 48px;
       text-align: center;
       .center{
@@ -177,6 +178,15 @@ background: transparent;
     }
     .cur{
       color: ${style['theme-color']}
+      div{
+        color: ${style['theme-color']}
+        span{
+          color: ${style['theme-color']}
+        }
+      }
+      i{
+        color: ${style['theme-color']}
+      }
     }
   }
   .close{

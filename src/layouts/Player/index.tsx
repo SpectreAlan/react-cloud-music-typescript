@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {RootState} from "../../store/reducer";
-import {changePause, changeIndex} from '../../store/modules/player/actions'
+import {changePause, changeIndex, changeFullScreen} from '../../store/modules/player/actions'
 import {getPlayUrl} from '../../utils'
 import {playMode} from '../../config/player'
 import Mini from './mini'
@@ -38,11 +38,21 @@ const Player = () => {
     setCover(song.img)
     setDuration((song.duration / 1000) | 0);
   }, [index, playList, dispatch]);
+
   useEffect(() => {
-    // @ts-ignore
-    pause ? audioRef.current.pause() : audioRef.current.play();
+    if (audioRef && audioRef.current) {
+      // @ts-ignore
+      pause ? audioRef.current.pause() : audioRef.current.play();
+    }
   }, [pause])
 
+  useEffect(() => {
+    if (!playList.length) {
+      dispatch(changeIndex(-1))
+      dispatch(changeFullScreen(false))
+      console.log(index, fullScreen)
+    }
+  }, [playList])
   const changeSong = (param: number) => {
     let i = -1
     const lastIndex = playList.length - 1
@@ -81,20 +91,26 @@ const Player = () => {
   }
   return (<>
     {
-      index > -1 && !fullScreen ? <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/> : ''
+      index > -1 ?
+        <>
+          {
+            !fullScreen ?
+              <Mini img={cover} duration={duration} pause={pause} currentTime={currentTime}/> : ''
+          }
+          {
+            fullScreen ?
+              <Normal currentTime={currentTime} changeSong={changeSong} changeCurrentTime={changeCurrentTime}/> : ''
+          }
+          <audio
+            ref={audioRef}
+            onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}
+            onEnded={() => {
+              changeSong(1)
+            }}
+            onError={onError}
+          />
+        </> : ''
     }
-    {
-      index > -1 && fullScreen ?
-        <Normal currentTime={currentTime} changeSong={changeSong} changeCurrentTime={changeCurrentTime}/> : ''
-    }
-    <audio
-      ref={audioRef}
-      onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}
-      onEnded={() => {
-        changeSong(1)
-      }}
-      onError={onError}
-    />
   </>)
 }
 
