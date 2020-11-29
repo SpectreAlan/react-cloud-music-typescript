@@ -9,8 +9,7 @@ export interface PlayerState {
   pause: boolean;
   playList: ITracks;
   mode: playMode;
-  index: number,
-  playNext: false
+  index: number
 }
 
 const defaultState: PlayerState = {
@@ -18,8 +17,7 @@ const defaultState: PlayerState = {
   pause: true,
   playList: [],
   mode: playMode.sequence,
-  index: -1,
-  playNext: false
+  index: -1
 };
 
 export const playerReducer = produce((state, action: AnyAction) => {
@@ -47,9 +45,6 @@ export const playerReducer = produce((state, action: AnyAction) => {
           state.playList = action.data.list
           break
       }
-      break;
-    case types.PLAY_NEXT:
-      state.playLNext = action.data;
       break;
     case types.INDEX:
       state.index = action.data;

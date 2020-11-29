@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {style} from "../../assets/style/base";
 
 export const Container = styled.ul`
-padding: 12px 0;
+padding: 12px;
 li{
   position: relative;
   margin-bottom: 12px;

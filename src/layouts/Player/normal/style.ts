@@ -20,13 +20,14 @@ export const Container = styled.div`
   .content{
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0.8);
+    background: rgba(0,0,0,0.6);
     .top{
       display: flex;
       justify-content: space-between;
       padding: 0 8px;
       height: 48px;
       text-align: center;
+      color: #fff;
       .center{
         text-align: center;
         span{
@@ -41,6 +42,7 @@ export const Container = styled.div`
       i{
         line-height: 48px;
         font-size: 22px;
+        color: #fff;
       }
     }
     .rotate{
@@ -70,9 +72,11 @@ export const Container = styled.div`
         margin-bottom: 10px;
         i{
           font-size: 25px;
+          color: #fff;
         }
       }
       .progress{
+        color: #fff;
         width: 100%;
         box-sizing: border-box;
         padding: 24px 65px 0;
@@ -82,7 +86,7 @@ export const Container = styled.div`
         .line{
           width: 100%;
           height: 2px;
-          background: #000;
+          background: #fff;
           position: relative;
           .circle{
             position: absolute;
@@ -91,7 +95,7 @@ export const Container = styled.div`
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #000;
+            background: #fff;
           }
         }
         .currentTime{
@@ -112,6 +116,7 @@ export const Container = styled.div`
         line-height: 58px;
         i{
           font-size: 30px;
+          color: #fff;
         }
       }
     }
@@ -164,7 +169,7 @@ background: transparent;
       margin-bottom: 10px;
       border-bottom: 1px solid rgba(200,200,200,0.2);
       padding-bottom: 8px;
-      div{
+      .title{
         color: #000;
         font-size: 15px;
         span{
@@ -177,9 +182,8 @@ background: transparent;
       }
     }
     .cur{
-      color: ${style['theme-color']}
-      >div{
-        color: ${style['theme-color']}
+      .title{
+        color: ${style['theme-color']}!important;
         span{
           color: ${style['theme-color']}
         }
@@ -195,7 +199,6 @@ background: transparent;
   }
 }
 .mask{
-    background: rgba(0,0,0,0.2);
     position: absolute;
     top: 0;
     left: 0;

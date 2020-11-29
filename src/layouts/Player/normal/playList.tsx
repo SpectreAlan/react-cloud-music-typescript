@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {ListContainer} from './style'
 import Scroll from "../../../components/scroll";
 import {RootState} from "../../../store/reducer";
-import {changePlayList, changeIndex, changeFullScreen, changePlayNext} from '../../../store/modules/player/actions'
+import {changePlayList, changeIndex} from '../../../store/modules/player/actions'
 
 interface InterfaceProps {
   handlePlayListVisible: Function
@@ -17,20 +17,13 @@ const PlayList = (props: InterfaceProps) => {
     playList: state.player.playList
   }));
   const del = (i: number) => {
-    dispatch(changePlayList({index: i, type: -1}))
-    if (i < index) {
+    if (i <= index) {
       dispatch(changeIndex(index - 1))
-      dispatch(changePlayNext(false))
-    } else if (i === index) {
-      dispatch(changePlayNext(true))
-    } else {
-      dispatch(changePlayNext(false))
     }
-  }
-  const clear = () => {
-    dispatch(changeFullScreen(false))
-    dispatch(changeIndex(-1))
-    dispatch(changePlayList({type: 0}))
+    if (i === playList.length - 1) {
+      dispatch(changeIndex(0))
+    }
+    dispatch(changePlayList({index: i, type: -1}))
   }
   return (
     <ListContainer>
@@ -38,7 +31,7 @@ const PlayList = (props: InterfaceProps) => {
         <h3>当前播放<span>({playList.length})</span></h3>
         <div className="control">
           <span><i className='iconfont'>&#xe6e0;</i>收藏全部</span>
-          <span onClick={clear}>清空播放列表<i className='iconfont'>&#xe63c;</i></span>
+          <span onClick={() => dispatch(changePlayList({type: 0}))}>清空播放列表<i className='iconfont'>&#xe63c;</i></span>
         </div>
         <div className="list">
           <Scroll>
@@ -46,7 +39,7 @@ const PlayList = (props: InterfaceProps) => {
               {
                 playList.map((item, i) => (
                   <li key={i} className={index === i ? 'cur' : ''}>
-                    <div onClick={() => dispatch(changeIndex(i))}>
+                    <div onClick={() => dispatch(changeIndex(i))} className='title'>
                       {item.name}<span> - {item.singer}</span>
                     </div>
                     <i className='iconfont' onClick={() => del(i)}>&#xe63c;</i>

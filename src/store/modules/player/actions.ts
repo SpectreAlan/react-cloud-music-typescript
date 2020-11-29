@@ -25,11 +25,6 @@ export const changeMode = (data: playMode) => ({
   data
 })
 
-export const changePlayNext = (data: boolean) => ({
-  type: types.PLAY_NEXT,
-  data
-})
-
 export const changeIndex = (data: number) => ({
   type: types.INDEX,
   data
