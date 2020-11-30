@@ -10,7 +10,7 @@ export interface IBannerItem {
 }
 
 interface IRecommendItem {
-  id: string;
+  id: number;
   picUrl: string;
   name: string;
   playCount: number;

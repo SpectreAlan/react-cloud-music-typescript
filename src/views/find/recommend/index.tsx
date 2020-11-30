@@ -4,6 +4,7 @@ import {IRecommend} from '../../../store/modules/find/reducer'
 import LazyLoad, {forceCheck} from 'react-lazyload'
 import Scroll from '../../../components/scroll'
 import {getCount} from '../../../utils'
+import {useHistory} from "react-router";
 
 interface RecommendInterface {
   list: IRecommend
@@ -11,6 +12,11 @@ interface RecommendInterface {
 
 const Recommend = (props: RecommendInterface) => {
   const {list} = props
+  const router = useHistory()
+  const detail = (id: number) => {
+    sessionStorage.setItem('songListId', String(id))
+    router.push('/songList')
+  }
   return (
     <Container>
       <div className="top">
@@ -23,6 +29,7 @@ const Recommend = (props: RecommendInterface) => {
             list.map((item, index) => (
               <li
                 key={index}
+                onClick={() => detail(item.id)}
               >
                 <div className='play'>
                   <i className='iconfont'>&#xe60e;</i>

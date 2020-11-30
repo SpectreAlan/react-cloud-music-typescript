@@ -24,10 +24,11 @@ const Player = () => {
   }));
 
   useEffect(() => {
-    if (index === -1) {
+    const song = playList[index];
+    if (!song) {
       return
     }
-    const song = playList[index];
+
     if (audioRef && audioRef.current) {
       getPlayUrl(song.id).then(res => {
         // @ts-ignore

@@ -22,7 +22,8 @@ const DailyRecommendation = (props: any) => {
   })
   useEffect(() => {
     setLoading(true)
-    getSongListRequest(props.location.state.id).then(res => {
+    const id = Number(sessionStorage.getItem('songListId')) || -1
+    getSongListRequest(id).then(res => {
       const {tracks, coverImgUrl, name, creator, trackCount, shareCount, commentCount, subscribedCount, subscribed, id} = res.data.playlist
       const {avatarUrl, nickname} = creator
       const list: ITracks = []

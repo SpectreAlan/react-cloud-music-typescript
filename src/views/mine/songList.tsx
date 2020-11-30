@@ -41,7 +41,10 @@ const SongList = (props: InterfaceProps) => {
       refresh()
     }, 0)
   }
-
+  const detail = (id: number)=>{
+    sessionStorage.setItem('songListId', String(id))
+    router.push('/songList')
+  }
   return (
     <ListContainer>
       <div className="title">
@@ -52,7 +55,7 @@ const SongList = (props: InterfaceProps) => {
       <ul>
         {
           list.map((item, index) => (
-            <li key={index} className='list-item' onClick={() => router.push({pathname : '/songList', state: {id: item.id}})}>
+            <li key={index} className='list-item' onClick={() => detail(item.id)}>
               <img src={item.coverImgUrl} alt={item.name}/>
               <div className="center">
                 <div className='name'>
