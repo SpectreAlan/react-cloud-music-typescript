@@ -11,7 +11,7 @@ export const Container = styled.div`
   position: fixed;
   color: #000;
   z-index: 66666;
-  background: url(${(props: InterfaceProps) => props.img}) no-repeat center center;
+  background: url(${(props: InterfaceProps) => props.img}) no-repeat center center #000;
   background-size: cover;
   top:0;
   left: 0;
@@ -79,7 +79,7 @@ export const Container = styled.div`
         color: #fff;
         width: 100%;
         box-sizing: border-box;
-        padding: 24px 65px 0;
+        padding: 24px 70px 0;
         line-height: 48px;
         height: 48px;
         position: relative;

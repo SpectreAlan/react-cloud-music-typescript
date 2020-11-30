@@ -23,3 +23,15 @@ export interface ISongListProps {
   subscribed: boolean;
   id: number
 }
+
+export type IComments = IComment[]
+export interface IComment {
+  content: string;
+  liked: boolean;
+  likedCount: number;
+  parentCommentId: number;
+  time: number;
+  user: any;
+  commentId: number;
+  beReplied: any
+}

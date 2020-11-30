@@ -5,7 +5,8 @@ import {changeFullScreen, changePause, changeMode} from '../../../store/modules/
 import {RootState} from "../../../store/reducer";
 import {formatDuration} from '../../../utils'
 import PlayList from "./playList";
-import {likeRequest, commentsRequest} from '../../../api/player'
+import {likeRequest} from '../../../api/player'
+import Comment from "../../../views/comment";
 
 interface InterfaceProps {
   currentTime: number;
@@ -27,6 +28,7 @@ const NormalPlayer = (props: InterfaceProps) => {
   const progressRef = useRef(null)
   const dispatch = useDispatch()
   const [left, setLeft] = useState(0)
+  const [comment, setComment] = useState(false)
   const [width, setWidth] = useState(230)
   const [touching, setTouching] = useState(false)
   const [playListVisible, setPlayListVisible] = useState(false)
@@ -91,10 +93,8 @@ const NormalPlayer = (props: InterfaceProps) => {
   const download = () => {
     window.open(url)
   }
-  const comments = (id: number) => {
-    commentsRequest(id).then(res => {
-      console.log(res.data)
-    })
+  const handleComment = ()=>{
+    setComment(!comment)
   }
   const song = playList[index]
   return (
@@ -117,7 +117,7 @@ const NormalPlayer = (props: InterfaceProps) => {
               <div className="icons">
                 <i className='iconfont' onClick={() => like(song.id)}>&#xe688;</i>
                 <i className='iconfont' onClick={download}>&#xe626;</i>
-                <i className='iconfont' onClick={() => comments(song.id)}>&#xe865;</i>
+                <i className='iconfont' onClick={handleComment}>&#xe865;</i>
                 <i className='iconfont' onClick={hide}>&#xe71f;</i>
               </div>
               <div className="progress">
@@ -149,6 +149,7 @@ const NormalPlayer = (props: InterfaceProps) => {
           }
         </Container> : ''
       }
+      {comment ? <Comment song={song} handleComment={handleComment}/> : ''}
     </>
   )
 }
