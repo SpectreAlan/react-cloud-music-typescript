@@ -12,6 +12,7 @@ const Player = () => {
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0)
   const [cover, setCover] = useState('')
+  const [url, setUrl] = useState('')
   const [duration, setDuration] = useState(0)
 
   const {index, playList, pause, mode, fullScreen} = useSelector((state: RootState) => ({
@@ -32,7 +33,7 @@ const Player = () => {
         // @ts-ignore
         if(audioRef.current.src !== res.data.data[0].url){
           // @ts-ignore
-          audioRef.current.src = res.data.data[0].url;
+          setUrl(res.data.data[0].url)
           // @ts-ignore
           audioRef.current.autoplay = true;
           dispatch(changePause(false));
@@ -109,12 +110,13 @@ const Player = () => {
           }
           {
             fullScreen ?
-              <Normal currentTime={currentTime} changeSong={changeSong} changeCurrentTime={changeCurrentTime}/> : ''
+              <Normal currentTime={currentTime} changeSong={changeSong} changeCurrentTime={changeCurrentTime} url={url}/> : ''
           }
         </> : ''
     }
     <audio
       ref={audioRef}
+      src={url}
       onTimeUpdate={(audio: any) => setCurrentTime(audio.target.currentTime)}
       onEnded={() => {
         changeSong(1)

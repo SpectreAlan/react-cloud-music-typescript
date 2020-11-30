@@ -5,11 +5,13 @@ import {changeFullScreen, changePause, changeMode} from '../../../store/modules/
 import {RootState} from "../../../store/reducer";
 import {formatDuration} from '../../../utils'
 import PlayList from "./playList";
+import {likeRequest, commentsRequest} from '../../../api/player'
 
 interface InterfaceProps {
   currentTime: number;
   changeSong: Function;
   changeCurrentTime: Function;
+  url: string;
 }
 
 const NormalPlayer = (props: InterfaceProps) => {
@@ -21,7 +23,7 @@ const NormalPlayer = (props: InterfaceProps) => {
     mode: state.player.mode
   }));
 
-  const {currentTime, changeSong, changeCurrentTime} = props
+  const {currentTime, changeSong, changeCurrentTime, url} = props
   const progressRef = useRef(null)
   const dispatch = useDispatch()
   const [left, setLeft] = useState(0)
@@ -81,6 +83,19 @@ const NormalPlayer = (props: InterfaceProps) => {
   const handlePlayListVisible = () => {
     setPlayListVisible(!playListVisible)
   }
+  const like = (id: number) => {
+    likeRequest(id).then(res => {
+      console.log(res.data)
+    })
+  }
+  const download = () => {
+    window.open(url)
+  }
+  const comments = (id: number) => {
+    commentsRequest(id).then(res => {
+      console.log(res.data)
+    })
+  }
   const song = playList[index]
   return (
     <>
@@ -100,9 +115,9 @@ const NormalPlayer = (props: InterfaceProps) => {
             </div>
             <div className="bottom">
               <div className="icons">
-                <i className='iconfont' onClick={hide}>&#xe688;</i>
-                <i className='iconfont' onClick={hide}>&#xe626;</i>
-                <i className='iconfont' onClick={hide}>&#xe865;</i>
+                <i className='iconfont' onClick={() => like(song.id)}>&#xe688;</i>
+                <i className='iconfont' onClick={download}>&#xe626;</i>
+                <i className='iconfont' onClick={() => comments(song.id)}>&#xe865;</i>
                 <i className='iconfont' onClick={hide}>&#xe71f;</i>
               </div>
               <div className="progress">
