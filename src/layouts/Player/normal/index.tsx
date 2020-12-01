@@ -149,7 +149,7 @@ const NormalPlayer = (props: InterfaceProps) => {
           }
         </Container> : ''
       }
-      {comment ? <Comment song={song} handleComment={handleComment}/> : ''}
+      {comment ? <Comment info={{name: song.name,id: song.id,img: song.img, creator: song.singer}} commentType='music' handleComment={handleComment}/> : ''}
     </>
   )
 }

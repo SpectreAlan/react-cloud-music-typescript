@@ -1,10 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Container} from './style'
-import {commentsRequest} from "../../api/player";
-import {commentLikeRequest, commentRequest} from "../../api/common";
+import {commentLikeRequest, commentRequest, commentsRequest} from "../../api/common";
 import Loading from "../../components/loading";
 import Scroll from "../../components/scroll";
-import {IComments, IComment, ITrack} from '../../interface'
+import {IComments, IComment} from '../../interface'
 import {getCount, formatTime} from '../../utils'
 
 enum commentType {
@@ -12,15 +11,21 @@ enum commentType {
   hotComments = 1,
   topComments = 2
 }
-
+interface IInfo {
+  name: string;
+  id: number;
+  img: string;
+  creator: string
+}
 interface IProps {
-  song: ITrack;
+  info: IInfo;
+  commentType: string;
   handleComment: Function
 }
 
 type TComments = IComments[]
 const Comment = (props: IProps) => {
-  const {song, handleComment} = props
+  const {info, handleComment, commentType} = props
   const [loading, setLoading] = useState(false)
   const [v, setV] = useState('')
   const [type, setType] = useState<commentType>(0)
@@ -32,15 +37,15 @@ const Comment = (props: IProps) => {
   }, [])
   const getData = () => {
     setLoading(true)
-    commentsRequest(song.id).then(res => {
+    commentsRequest(info.id, commentType).then(res => {
       setLoading(false)
       const {comments, hotComments, topComments, total} = res.data
       setComments([comments, hotComments, topComments])
       setTotal(total)
     })
   }
-  const like = (item: IComment, song: ITrack) => {
-    commentLikeRequest(song.id, item.liked ? 0 : 1, 0, item.commentId).then(res => {
+  const like = (item: IComment, info: IInfo) => {
+    commentLikeRequest(info.id, item.liked ? 0 : 1, 0, item.commentId).then(res => {
       getData()
     })
   }
@@ -57,7 +62,7 @@ const Comment = (props: IProps) => {
     setV(e.target.value)
   }
   const replay = ()=>{
-    commentRequest(song.id,0,v).then(res=>{
+    commentRequest(info.id,0,v).then(res=>{
       console.log(res.data)
       setV('')
     })
@@ -75,10 +80,10 @@ const Comment = (props: IProps) => {
                 <div/>
               </div>
               <div className="song">
-                <img src={song.img} alt={song.name}/>
+                <img src={info.img} alt={info.name}/>
                 <div className="info">
-                  <p>{song.name}</p>
-                  <span>{song.singer}</span>
+                  <p>{info.name}</p>
+                  <span>{info.creator}</span>
                 </div>
               </div>
               <div className="title">
@@ -110,7 +115,7 @@ const Comment = (props: IProps) => {
                         <div className="liked">
                           {getCount(item.likedCount)}
                           <i className={item.liked ? 'iconfont like' : 'iconfont'}
-                             onClick={() => like(item, song)}>&#xe618;</i>
+                             onClick={() => like(item, info)}>&#xe618;</i>
                         </div>
                       </li>
                     )) : <div className="none">暂时没有评论 ~ </div>

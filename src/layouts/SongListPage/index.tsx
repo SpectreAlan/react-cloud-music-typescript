@@ -1,4 +1,4 @@
-import React, {useRef, useCallback} from 'react'
+import React, {useRef, useCallback, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Top, Cover, ToolBar, ScrollContainer} from './style'
 import Scroll from '../../components/scroll'
@@ -9,6 +9,7 @@ import {getCount} from '../../utils'
 import {playListSubscribeRequest} from '../../api/common'
 import {changePlayList, changeIndex, changeFullScreen} from '../../store/modules/player/actions'
 import {useDispatch} from "react-redux";
+import Comment from "../../views/comment";
 
 interface IInfo {
   info: ISongListProps
@@ -23,7 +24,10 @@ const SongListPage = (props: IInfo) => {
   const headRef = useRef(null)
   const router = useHistory()
   const dispatch = useDispatch()
-
+  const [comment, setComment] = useState(false)
+  const handleComment = ()=>{
+    setComment(!comment)
+  }
   const onScroll = useCallback((pos) => {
     if (!toolbarRef) {
       return
@@ -116,13 +120,13 @@ const SongListPage = (props: IInfo) => {
                   </div>
                 </div>
                 <ul className="icons">
-                  <li>
+                  <li onClick={handleComment}>
                     <i className='iconfont'>&#xe865;</i>
-                    <p>{commentCount}</p>
+                    <p>{getCount(commentCount)}</p>
                   </li>
                   <li>
                     <i className='iconfont'>&#xe65c;</i>
-                    <p>{shareCount}</p>
+                    <p>{getCount(shareCount)}</p>
                   </li>
                   <li>
                     <i className='iconfont'>&#xe626;</i>
@@ -141,6 +145,7 @@ const SongListPage = (props: IInfo) => {
           </div>
         </Scroll>
       </ScrollContainer>
+      {comment ? <Comment info={{name,img: coverImgUrl, id, creator}} commentType='playlist' handleComment={handleComment}/> : ''}
     </>
   )
 }

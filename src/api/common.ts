@@ -24,3 +24,7 @@ export const commentRequest = <T = any>(id: number, type: number, content: strin
    */
   return httpInstance.get<T>(`/comment?t=1&type=${type}&id=${id}&content=${content}`)
 }
+
+export const commentsRequest = <T = any>(id: number, type: string) => { // 获取评论列表， id，offset，limit
+  return httpInstance.get<T>(`/comment/${type}?id=${id}`)
+}

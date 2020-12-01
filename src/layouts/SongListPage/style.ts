@@ -143,6 +143,7 @@ export const ScrollContainer = styled.div`
             p{
               color: #fff;
               font-size: 14px;
+              line-height: 18px;
             }
           }
         }
