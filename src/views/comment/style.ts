@@ -1,5 +1,13 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {style} from "../../assets/style/base";
+export const animation = keyframes`
+  0% {
+    left: 360px;
+  }
+  100% {
+    left: 0;
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -10,7 +18,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   z-index: 9999999;
   top: 0;
-  left: 0;
+  animation: ${animation} ease-in-out 0.4s;
   .fixed{
     position: absolute;
     top: 0;
