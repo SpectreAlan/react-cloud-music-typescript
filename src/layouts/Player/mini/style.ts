@@ -13,7 +13,7 @@ export const animation = keyframes`
 `;
 export const Container = styled.div`
   position: fixed;
-  z-index: 9999;
+  z-index: 66668;
   right: 4px;
   top: 4px;
   circle{

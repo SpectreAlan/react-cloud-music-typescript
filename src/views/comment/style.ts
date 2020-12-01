@@ -16,7 +16,7 @@ export const Container = styled.div`
   height: 100%;
   padding: 160px 12px 50px;
   box-sizing: border-box;
-  z-index: 9999999;
+  z-index: 66667;
   top: 0;
   animation: ${animation} ease-in-out 0.4s;
   .fixed{

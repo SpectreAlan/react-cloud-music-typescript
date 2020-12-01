@@ -14,6 +14,7 @@ const Login = lazy(() => import("../views/login"));
 const Mine = lazy(() => import("../views/mine"));
 const DailyRecommendation = lazy(() => import("../views/dailyRecommendation"));
 const SongList = lazy(() => import("../views/songList"));
+const PlaylistPlaza = lazy(() => import("../views/playlistPlaza"));
 
 export const routes = [
   {
@@ -76,6 +77,15 @@ export const routes = [
         routes: [
           {
             path: "/songList",
+          }
+        ]
+      },
+      {
+        path: "/playlistPlaza",
+        component: SuspenseComponent(PlaylistPlaza),
+        routes: [
+          {
+            path: "/playlistPlaza",
           }
         ]
       }

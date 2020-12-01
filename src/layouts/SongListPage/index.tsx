@@ -26,7 +26,9 @@ const SongListPage = (props: IInfo) => {
   const dispatch = useDispatch()
   const [comment, setComment] = useState(false)
   const handleComment = ()=>{
-    setComment(!comment)
+    if(id > 0){
+      setComment(!comment)
+    }
   }
   const onScroll = useCallback((pos) => {
     if (!toolbarRef) {
