@@ -29,6 +29,17 @@ export const formatDuration = (t: number): string => {
   return sec + ':' + minStr + ':' + hourStr
 }
 
+export const formatTime = (t: number): string => {
+  const time = new Date(t)
+  const y = time.getFullYear()
+  const M = time.getMonth()
+  const d = time.getDay()
+  const h = time.getHours()
+  const m = time.getMinutes()
+  const s = time.getSeconds()
+  return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s
+}
+
 export const getPlayUrl = (id: number): string => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }

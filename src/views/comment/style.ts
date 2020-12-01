@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import {style} from "../../assets/style/base";
 
 export const Container = styled.div`
   width: 100%;
   position: fixed;
   background: #fff;
   height: 100%;
-  padding: 160px 12px 0;
+  padding: 160px 12px 50px;
   box-sizing: border-box;
   z-index: 9999999;
   top: 0;
@@ -97,10 +98,8 @@ export const Container = styled.div`
           color: lightslategrey;
          }
          .content{
-          line-height: 16px;
-           white-space:normal;
-            word-break:keep-all;
-            word-wrap: break-word;
+          line-height: 18px;
+          text-align: justify;
          }
          p{
           line-height: 30px;
@@ -109,10 +108,48 @@ export const Container = styled.div`
       }
       .liked{
          width: 50px;
+         i{
+          margin-left: 4px;
+         }
          .like{
           color: red;
          }
       }
+    }
+  }
+  .replay{
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    padding: 0 70px 0 12px;
+    box-sizing: border-box;
+    min-height: 30px;
+    max-height: 60px;
+    button{
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 30px;
+      border: none;
+      outline: none;
+      background: ${style["theme-color"]};
+      color: #fff;
+      border-radius: 4px;
+    }
+    textarea{
+      border: 1px solid ${style["theme-color"]};
+      border-radius: 4px;
+      width: 100%;
+      height: 30px;
+      min-height: 30px;
+      max-height: 60px;
+      padding: 4px;
+      box-sizing: border-box;
+      min-width: 260px;
+      max-width: 280px;
     }
   }
 `

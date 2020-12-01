@@ -1,16 +1,16 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Container} from './style'
 import {commentsRequest} from "../../api/player";
-import {commentLikeRequest} from "../../api/common";
+import {commentLikeRequest, commentRequest} from "../../api/common";
 import Loading from "../../components/loading";
 import Scroll from "../../components/scroll";
 import {IComments, IComment, ITrack} from '../../interface'
-import {getCount} from '../../utils'
+import {getCount, formatTime} from '../../utils'
 
 enum commentType {
-  hotComments = 0,
-  topComments = 1,
-  comments = 2
+  comments = 0,
+  hotComments = 1,
+  topComments = 2
 }
 
 interface IProps {
@@ -22,7 +22,8 @@ type TComments = IComments[]
 const Comment = (props: IProps) => {
   const {song, handleComment} = props
   const [loading, setLoading] = useState(false)
-  const [type, setType] = useState<commentType>(2)
+  const [v, setV] = useState('')
+  const [type, setType] = useState<commentType>(0)
   const [total, setTotal] = useState<commentType>(0)
   const [comments, setComments] = useState<TComments>([[], [], []])
   const scrollRef = useRef()
@@ -34,7 +35,7 @@ const Comment = (props: IProps) => {
     commentsRequest(song.id).then(res => {
       setLoading(false)
       const {comments, hotComments, topComments, total} = res.data
-      setComments([topComments, hotComments, comments,])
+      setComments([comments, hotComments, topComments])
       setTotal(total)
     })
   }
@@ -51,6 +52,15 @@ const Comment = (props: IProps) => {
         scrollRef.current.refresh()
       }
     }, 0)
+  }
+  const handleTextareaChange = (e:any)=>{
+    setV(e.target.value)
+  }
+  const replay = ()=>{
+    commentRequest(song.id,0,v).then(res=>{
+      console.log(res.data)
+      setV('')
+    })
   }
   return (
     <>
@@ -75,12 +85,12 @@ const Comment = (props: IProps) => {
                 <h3>评论区</h3>
                 <div className='type'>
                 <span className={type === 0 ? 'active' : ''}
-                      onClick={() => changeType(0)}>最热</span>
+                      onClick={() => changeType(0)}>最新</span>
                   <span className='separator'>|</span>
                   <span className={type === 1 ? 'active' : ''}
-                        onClick={() => changeType(1)}>推荐</span>
+                        onClick={() => changeType(1)}>最热</span>
                   <span className='separator'>|</span>
-                  <span className={type === 2 ? 'active' : ''} onClick={() => changeType(2)}>最新</span>
+                  <span className={type === 2 ? 'active' : ''} onClick={() => changeType(2)}>推荐</span>
                 </div>
               </div>
             </div>
@@ -93,7 +103,7 @@ const Comment = (props: IProps) => {
                         <img className="avatar" src={item.user.avatarUrl} alt={item.user.nickname}/>
                         <div className="info">
                           <h3>{item.user.nickname}</h3>
-                          <span className='time'>{item.time}</span>
+                          <span className='time'>{formatTime(item.time)}</span>
                           <div className="content">{item.content}</div>
                           <p>{getCount(item.beReplied.length) > 0 ? getCount(item.beReplied.length) + '条回复 >' : ''}</p>
                         </div>
@@ -107,6 +117,10 @@ const Comment = (props: IProps) => {
                   }
                 </ul>
               </Scroll>
+            </div>
+            <div className="replay">
+              <textarea value={v} onChange={handleTextareaChange}/>
+              <button onClick={replay}>回复</button>
             </div>
           </Container>
       }
