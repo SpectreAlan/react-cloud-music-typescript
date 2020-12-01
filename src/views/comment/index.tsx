@@ -45,7 +45,7 @@ const Comment = (props: IProps) => {
     })
   }
   const like = (item: IComment, info: IInfo) => {
-    commentLikeRequest(info.id, item.liked ? 0 : 1, 0, item.commentId).then(res => {
+    commentLikeRequest(info.id, item.liked ? 0 : 1, commentType, item.commentId).then(res => {
       getData()
     })
   }

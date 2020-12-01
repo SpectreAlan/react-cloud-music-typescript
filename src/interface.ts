@@ -1,5 +1,3 @@
-import songList from "./views/mine/songList";
-
 export interface ITrack {
   id: number;
   url: string;
