@@ -1,5 +1,5 @@
 import {httpInstance} from "./axios"
-
+import {CommentType} from '../interface'
 export const getSongListRequest = <T = any>(id: number) => {
   return httpInstance.get<T>("/playlist/detail?id=" + id)
 }
@@ -16,15 +16,14 @@ export const commentLikeRequest = <T = any>(id: number, t: number, type: number,
    */
   return httpInstance.get<T>(`/comment/like?id=${id}&cid=${cid}&t=${t}&type=${type}`)
 }
-export const commentRequest = <T = any>(id: number, type: number, content: string) => { // 添加评论
+export const commentRequest = <T = any>(id: number, commentType: number, content: string) => { // 添加评论
   /*
-    type 0: 歌曲 1: mv 2: 歌单 3: 专辑 4: 电台 5: 视频 6: 动态
     id:对应资源 id
     content :要发送的内容
    */
-  return httpInstance.get<T>(`/comment?t=1&type=${type}&id=${id}&content=${content}`)
+  return httpInstance.get<T>(`/comment?t=1&type=${commentType}&id=${id}&content=${content}`)
 }
 
-export const commentsRequest = <T = any>(id: number, type: string) => { // 获取评论列表， id，offset，limit
-  return httpInstance.get<T>(`/comment/${type}?id=${id}`)
+export const commentsRequest = <T = any>(id: number, type: CommentType) => { // 获取评论列表， id，offset，limit
+  return httpInstance.get<T>(`/comment/${CommentType[type]}?id=${id}`)
 }

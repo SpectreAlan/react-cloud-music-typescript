@@ -3,7 +3,7 @@ import {Container} from './style'
 import {commentLikeRequest, commentRequest, commentsRequest} from "../../api/common";
 import Loading from "../../components/loading";
 import Scroll from "../../components/scroll";
-import {IComments, IComment} from '../../interface'
+import {IComments, IComment, CommentType} from '../../interface'
 import {getCount, formatTime} from '../../utils'
 
 enum commentType {
@@ -19,7 +19,7 @@ interface IInfo {
 }
 interface IProps {
   info: IInfo;
-  commentType: string;
+  commentType: CommentType;
   handleComment: Function
 }
 
@@ -58,11 +58,13 @@ const Comment = (props: IProps) => {
       }
     }, 0)
   }
+
   const handleTextareaChange = (e:any)=>{
     setV(e.target.value)
   }
+
   const replay = ()=>{
-    commentRequest(info.id,0,v).then(res=>{
+    commentRequest(info.id,commentType,v).then(res=>{
       console.log(res.data)
       setV('')
     })

@@ -7,6 +7,7 @@ import {formatDuration} from '../../../utils'
 import PlayList from "./playList";
 import {likeRequest} from '../../../api/player'
 import Comment from "../../../views/comment";
+import {CommentType} from '../../../interface'
 
 interface InterfaceProps {
   currentTime: number;
@@ -149,7 +150,7 @@ const NormalPlayer = (props: InterfaceProps) => {
           }
         </Container> : ''
       }
-      {comment ? <Comment info={{name: song.name,id: song.id,img: song.img, creator: song.singer}} commentType='music' handleComment={handleComment}/> : ''}
+      {comment ? <Comment info={{name: song.name,id: song.id,img: song.img, creator: song.singer}} commentType={CommentType.music} handleComment={handleComment}/> : ''}
     </>
   )
 }

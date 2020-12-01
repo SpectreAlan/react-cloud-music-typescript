@@ -1,13 +1,13 @@
-import React, {useRef, useCallback, useState} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import {Top, Cover, ToolBar, ScrollContainer} from './style'
+import {Cover, ScrollContainer, ToolBar, Top} from './style'
 import Scroll from '../../components/scroll'
 import SongList from '../SongList'
 import {forceCheck} from 'react-lazyload'
-import {ISongListProps} from '../../interface'
+import {CommentType, ISongListProps} from '../../interface'
 import {getCount} from '../../utils'
 import {playListSubscribeRequest} from '../../api/common'
-import {changePlayList, changeIndex, changeFullScreen} from '../../store/modules/player/actions'
+import {changeFullScreen, changeIndex, changePlayList} from '../../store/modules/player/actions'
 import {useDispatch} from "react-redux";
 import Comment from "../../views/comment";
 
@@ -145,7 +145,7 @@ const SongListPage = (props: IInfo) => {
           </div>
         </Scroll>
       </ScrollContainer>
-      {comment ? <Comment info={{name,img: coverImgUrl, id, creator}} commentType='playlist' handleComment={handleComment}/> : ''}
+      {comment ? <Comment info={{name,img: coverImgUrl, id, creator}} commentType={CommentType.playlist} handleComment={handleComment}/> : ''}
     </>
   )
 }
