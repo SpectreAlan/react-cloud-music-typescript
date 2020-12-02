@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {style} from "../../assets/style/base";
 
 export const Container = styled.div`
   position: fixed;
@@ -10,7 +9,7 @@ export const Container = styled.div`
   z-index: 11;
   box-sizing: border-box;
   overflow: hidden;
-  padding-top: 70px;
+  padding-top: 40px;
   background: #fff;
   .none{
     text-align: center;
@@ -36,28 +35,45 @@ export const Container = styled.div`
       }
     }
   }
+  .item{
+    margin-bottom: 12px;
+    padding: 12px;
+    h3{
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 12px;
+    }
+    ul{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .hot{
+        width: 104px;
+        position: relative;
+        max-height: 150px;
+        margin-bottom: 10px;
+        span{
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: #fff;
+          display: inline-block;
+          width: 100%;
+          background: rgba(0,0,0,0.5);
+          padding: 6px 0;
+          text-align: center;
+        }
+        img{
+          width: 104px;
+          height: 104px;
+          margin-bottom: 6px;
+        }
+        p{
+          line-height: 16px;
+        }
+      }
+    }
+  }
 `
 
-interface InterfaceProps {
-  count: number;
-}
-
-export const NavContainer = styled.ul`
-  padding-top: 12px;
-  display: flex;
-  flex-wrap: nowrap;
-  width: ${(props: InterfaceProps) => props.count + 'px'};
-  border-bottom: 1px solid rgba(100,100,100,0.1);
-  li{
-    padding-bottom: 4px;
-    margin: 0 8px;
-    text-align: center;
-    font-size: 14px;
-    color: #000;
-    font-weight: bold;
-  }
-  .active{
-    color: ${style["theme-color"]};
-    border-bottom: 2px solid ${style["theme-color"]};
-  }
-`

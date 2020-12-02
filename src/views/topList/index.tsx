@@ -2,22 +2,55 @@ import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom'
 import {Container} from './style'
 import {toplistRequest} from '../../api/common'
-import Recommend from "../../components/recommend";
-import {IRecommend} from "../../store/modules/find/reducer";
 import {AxiosResponse} from "axios";
-import {forceCheck} from "react-lazyload";
-import Scroll from "../../components/scroll";
-import Loading from "../../components/loading";
+import LazyLoad, {forceCheck} from "react-lazyload"
+import Scroll from "../../components/scroll"
+import Loading from "../../components/loading"
 
-const PlayListPlaza = () => {
+interface IItem {
+  name: string;
+  coverImgUrl: string;
+  id: number;
+  updateFrequency: string;
+}
+
+type TType = IItem[]
+
+const HotList = () => {
   const [loading, setLoading] = useState(false)
-  const [recommend, setRecommend] = useState<IRecommend>([])
+  const [hot, setHot] = useState<TType[]>([[]])
+  const [types, setTypes] = useState<string[]>([])
   const router = useHistory()
   useEffect(() => {
     setLoading(true)
-    toplistRequest<{ playlists: IRecommend }>().then((res: AxiosResponse) => {
-      const {playlists} = res.data
-      setRecommend(playlists)
+    toplistRequest<{ list: TType }>().then((res: AxiosResponse) => {
+      const {list} = res.data
+      let tags:any[] = ['其他']
+      list.map((item: any) => (tags = [...item.tags, ...tags]))
+      tags = Array.from(new Set(tags))
+      setTypes(tags)
+      const topList:TType[] = [[]]
+      list.map((item: any) => {
+        const {name,coverImgUrl,id,updateFrequency} = item
+        const o: IItem = {name,coverImgUrl,id,updateFrequency}
+        if(item.tags.length){
+          item.tags.map((tag:any)=>{
+            const i: number = tags.indexOf(tag)
+            if(!topList[i]){
+              topList[i] = []
+            }
+            topList[i].push(o)
+          })
+        }else{
+          if(!topList[tags.length -1] ){
+            topList[tags.length -1] = []
+          }
+          topList[tags.length -1].push(o)
+        }
+      })
+      setHot(topList)
+      console.log(tags)
+      console.log(topList)
       setLoading(false)
     }).catch((e) => {
       console.log(e)
@@ -29,17 +62,51 @@ const PlayListPlaza = () => {
       <div className="fixed">
         <div className="top">
           <i className='iconfont back' onClick={() => router.go(-1)}>&#xe63a;</i>
-          <span>歌单广场</span>
+          <span>排行榜</span>
           <i/>
         </div>
       </div>
       <Scroll onScroll={forceCheck}>
         {
-          loading ? <Loading/> : (recommend.length ? <Recommend list={recommend}/> : <div className="none">没有找到对应歌单 ^-^</div>)
+          loading ? <Loading/> :
+            <div>
+              {
+                types.map((type, index) => (
+                  <div
+                    className='item'
+                    key={index}
+                  >
+                    <h3>{type}</h3>
+                    <ul>
+                    {
+                      hot.length && hot[index].map((item:IItem)=>(
+
+                          <li
+                            className='hot'
+                            key={item.id}
+                          >
+                            <span>{item.updateFrequency}</span>
+                            <LazyLoad
+                              overflow
+                              placeholder={
+                                <img width="104px" height="104px" src={require('../../assets/images/music.png')} alt="music"/>
+                              }
+                            >
+                              <img src={item.coverImgUrl} alt="music"/>
+                            </LazyLoad>
+                            <p>{item.name}</p>
+                          </li>
+                      ))
+                    }
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
         }
       </Scroll>
     </Container>
   )
 }
 
-export default React.memo(PlayListPlaza)
+export default React.memo(HotList)
