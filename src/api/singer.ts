@@ -15,13 +15,41 @@ export enum areaType {
   '韩国' = 16,
   '欧美' = 96,
 }
+
 export interface ISinger {
   name: string;
   id: number;
   picUrl: string;
   alias: string[]
 }
+
 export type ISingers = ISinger[]
-export const singerRequest = <T = any>(type: singerType, area: areaType) => {
+
+export const singerRequest = <T = any>(type: singerType, area: areaType) => { // 歌手列表
   return httpInstance.get<T>(`/artist/list?type=${type}&area=${area}`)
+}
+
+export const hotSongsOfsingerRequest = <T = any>(id: number) => { // 歌手热门50首歌曲
+  return httpInstance.get<T>(`/artist/top/song?id=${id}`)
+}
+
+export const songsOfsingerRequest = <T = any>(id: number) => { // 歌手全部歌曲
+  return httpInstance.get<T>(`/artist/songs?id=${id}`)
+}
+export interface ISingerInfo {
+  name: string;
+  detailDescription: string;
+  description: string;
+  cover: string;
+  briefDesc: string;
+  albumSize: number;
+  musicSize: number;
+  id: number;
+  mvSize: number;
+  eventCount: number;
+  followed: boolean;
+  identifyTag: string[];
+}
+export const singerInfoRequest = <T = any>(id: string) => { // 歌手信息
+  return httpInstance.get<T>(`/artist/detail?id=${id}`)
 }

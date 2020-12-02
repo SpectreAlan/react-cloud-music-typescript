@@ -15,7 +15,6 @@ const Singer = () => {
   const router = useHistory()
   useEffect(() => {
     setLoading(true)
-    console.log(type, area)
     singerRequest<{ artists: ISingers }>(type, area).then((res: AxiosResponse) => {
       const {artists} = res.data
       setSingers(artists)
@@ -25,6 +24,10 @@ const Singer = () => {
       setLoading(false)
     })
   }, [type, area])
+  const detail = (id: number) => {
+    sessionStorage.setItem('singerId', String(id))
+    router.push('/singerDetail')
+  }
   return (
     <Container>
       <div className="fixed">
@@ -55,7 +58,7 @@ const Singer = () => {
               {
                 singers.map((item: ISinger) => (
                   <li key={item.id}>
-                    <div className="left">
+                    <div className="left" onClick={() => detail(item.id)}>
                       <img src={item.picUrl} alt={item.name}/>
                       <div className={item.alias.length ? 'alias' : 'no-alias'}>
                         <span>{item.name}</span>
