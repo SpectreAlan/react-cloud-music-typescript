@@ -31,3 +31,4 @@ export const commentsRequest = <T = any>(id: number, type: CommentType) => { // 
 export const toplistRequest = <T = any>() => { // 排行榜
   return httpInstance.get<T>(`/toplist`)
 }
+
