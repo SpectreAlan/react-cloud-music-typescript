@@ -4,10 +4,9 @@ export const Container = styled.div`
   position: fixed;
   top:0;
   left: 0;
-  bottom: 48px;
+  bottom: 0;
   width: 100%;
-  z-index: 11;
-  box-sizing: border-box;
+  z-index: 111;
   overflow: hidden;
   padding-top: 40px;
   background: #fff;
@@ -36,7 +35,6 @@ export const Container = styled.div`
     }
   }
   .item{
-    margin-bottom: 12px;
     padding: 12px;
     h3{
       font-size: 16px;
@@ -47,12 +45,11 @@ export const Container = styled.div`
     ul{
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       .hot{
         width: 104px;
         position: relative;
         max-height: 150px;
-        margin-bottom: 10px;
+        margin: 0 4px 12px;
         span{
           position: absolute;
           top: 0;
