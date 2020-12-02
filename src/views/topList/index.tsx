@@ -49,14 +49,16 @@ const HotList = () => {
         }
       })
       setHot(topList)
-      console.log(tags)
-      console.log(topList)
       setLoading(false)
     }).catch((e) => {
       console.log(e)
       setLoading(false)
     })
   }, [])
+  const detail = (id: number) => {
+    sessionStorage.setItem('songListId', String(id))
+    router.push('/songList')
+  }
   return (
     <Container>
       <div className="fixed">
@@ -84,6 +86,7 @@ const HotList = () => {
                           <li
                             className='hot'
                             key={item.id}
+                            onClick={()=>{detail(item.id)}}
                           >
                             <span>{item.updateFrequency}</span>
                             <LazyLoad
