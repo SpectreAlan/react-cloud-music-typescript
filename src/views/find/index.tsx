@@ -10,8 +10,9 @@ import Nav from './nav'
 import {ScrollContainer} from '../../assets/style/base'
 import NewSongs from "./newSongs";
 import Banner from "./banner";
-import Recommend from "./recommend";
+import Recommend from "../../components/recommend";
 import Loading from '../../components/loading'
+import {RecommendContainer} from './style'
 
 const Find = (props: RouteConfigComponentProps) => {
   const {banner, recommend, newSong, finishCount} = useSelector((state: RootState) => ({
@@ -42,7 +43,13 @@ const Find = (props: RouteConfigComponentProps) => {
             <Banner list={banner}/>
             <Nav/>
             {finishCount !== 3 ? <Loading/> : <NewSongs list={newSong}/>}
-            <Recommend list={recommend}/>
+            <RecommendContainer>
+              <div className="top">
+                <h3>热门歌单</h3>
+                <div>查看更多</div>
+              </div>
+              <Recommend list={recommend}/>
+            </RecommendContainer>
           </div>
         </Scroll>
       </ScrollContainer>

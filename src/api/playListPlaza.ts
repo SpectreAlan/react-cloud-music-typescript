@@ -1,6 +1,6 @@
 import {httpInstance} from "./axios"
 
-export const detailRequest = (cat: string) => {
+export const detailRequest = <T = any>(cat: string) => {
   return httpInstance.get<number>("/top/playlist?limit=20&order=new&cat=" + cat)
 };
 

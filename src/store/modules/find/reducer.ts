@@ -11,7 +11,8 @@ export interface IBannerItem {
 
 interface IRecommendItem {
   id: number;
-  picUrl: string;
+  picUrl?: string;
+  coverImgUrl?: string;
   name: string;
   playCount: number;
 }
