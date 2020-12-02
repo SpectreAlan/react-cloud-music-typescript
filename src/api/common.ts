@@ -27,3 +27,7 @@ export const commentRequest = <T = any>(id: number, commentType: CommentType, co
 export const commentsRequest = <T = any>(id: number, type: CommentType) => { // 获取评论列表， id，offset，limit
   return httpInstance.get<T>(`/comment/${CommentType[type]}?id=${id}`)
 }
+
+export const toplistRequest = <T = any>() => { // 排行榜
+  return httpInstance.get<T>(`/toplist`)
+}
