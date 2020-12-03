@@ -111,3 +111,5 @@ export const Control = styled.div`
     }
   }
 `
+
+export const Container = styled.div``

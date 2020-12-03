@@ -17,6 +17,7 @@ interface IMvItem {
   playTime: number;
   durationms: number;
   commentCount: number;
+  vid: string;
 }
 
 export type ITypes = ITypesItem[];

@@ -1,5 +1,6 @@
 import React from "react"
 import {IMv} from '../../store/modules/mv/reducer'
+import {useHistory} from 'react-router'
 import Scroll from "../../components/scroll"
 import LazyLoad, {forceCheck} from "react-lazyload"
 import {Control, Img, ScrollContainer} from "./style"
@@ -10,13 +11,18 @@ interface MvInterface {
 }
 const MvList = (props: MvInterface) => {
   const {list} = props
+  const router = useHistory()
+  const detail = (vid:string)=>{
+    sessionStorage.setItem('vid', vid)
+    router.push('/mvDetail')
+  }
   return (
     <ScrollContainer>
       <Scroll onScroll={forceCheck}>
         <ul className='mv-list'>
           {
             list.map((item, index) => (
-              <li key={index}>
+              <li key={index} onClick={()=> detail(item.vid)}>
                 <Img>
                   <LazyLoad
                     placeholder={<img width="100%" height="100%" src={require('../../assets/images/music.png')}

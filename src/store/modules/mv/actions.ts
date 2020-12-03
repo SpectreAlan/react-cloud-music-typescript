@@ -27,10 +27,10 @@ export const getMv = (id: number) => {
       const list: IMv = []
       // eslint-disable-next-line array-callback-return
       res.map((item: any) => {
-        const {coverUrl, title, praisedCount, playTime, durationms, commentCount} = item.data
+        const {coverUrl, title, praisedCount, playTime, durationms, commentCount, vid} = item.data
         const {avatarUrl, nickname} = item.data.creator
         list.push({
-          coverUrl, title, avatarUrl, nickname, praisedCount, playTime, durationms, commentCount
+          coverUrl, title, avatarUrl, nickname, praisedCount, playTime, durationms, commentCount,vid
         })
       })
       dispatch(changeMv(list))
