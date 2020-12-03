@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ITracks} from "../../interface";
 import {getName} from "../../utils";
-import {singerISongsRequest} from "../../api/singer";
+import {singerSongsRequest} from "../../api/singer";
 import SongList from "../../layouts/SongList";
 import Loading from "../../components/loading";
 
@@ -10,13 +10,13 @@ interface InterfaceProps {
   refresh: Function
 }
 
-const SingerSongs = (props: InterfaceProps) => {
+const Songs = (props: InterfaceProps) => {
   const {id, refresh} = props
   const [singerSongs, setSingerSongs] = useState<ITracks>([])
   const [loading, setLOading] = useState(false)
   useEffect(() => {
     setLOading(true)
-    singerISongsRequest(id).then(res => {
+    singerSongsRequest(id).then(res => {
       const list: ITracks = []
       const {hotSongs} = res.data
       // eslint-disable-next-line array-callback-return
@@ -32,9 +32,9 @@ const SingerSongs = (props: InterfaceProps) => {
         })
       })
       setSingerSongs(list)
-      setTimeout(()=>{
+      setTimeout(() => {
         refresh()
-      },200)
+      }, 200)
       setLOading(false)
     })
   }, [])
@@ -45,4 +45,4 @@ const SingerSongs = (props: InterfaceProps) => {
   </>
 }
 
-export default React.memo(SingerSongs)
+export default React.memo(Songs)

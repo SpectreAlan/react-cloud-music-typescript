@@ -4,7 +4,8 @@ import {Cover, ScrollContainer, ToolBar, Top} from './style'
 import Scroll from '../../components/scroll'
 import {forceCheck} from 'react-lazyload'
 import {ISingerInfo, singerInfoRequest} from '../../api/singer'
-import SingerSongs from "./singerSongs";
+import Songs from "./songs";
+import Albums from "./albums";
 const SingerDetail = () => {
   const listRef = useRef(null)
   const toolbarRef = useRef(null)
@@ -133,10 +134,10 @@ const SingerDetail = () => {
                     </div>
                   </div> : i === 1 ?
                   <div className="scroll-content">
-                    <SingerSongs id={info.id} refresh={refresh}/>
+                    <Songs id={info.id} refresh={refresh}/>
                   </div> : i === 2 ?
                     <div className="scroll-content">
-                      专辑
+                      <Albums id={info.id} refresh={refresh}/>
                     </div> :
                     <div className="scroll-content">
                       视频

@@ -40,6 +40,14 @@ export const formatTime = (t: number): string => {
   return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s
 }
 
+export const formatDate = (t: number): string => {
+  const time = new Date(t)
+  const y = time.getFullYear()
+  const M = time.getMonth()
+  const d = time.getDay()
+  return y + '-' + M + '-' + d
+}
+
 export const getPlayUrl = (id: number): string => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }

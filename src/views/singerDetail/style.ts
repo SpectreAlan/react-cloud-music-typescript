@@ -127,3 +127,31 @@ export const ScrollContainer = styled.div`
     }
   }
 `
+export const AlbumContainer = styled.ul`
+  background: #fff;
+  li{
+    margin-bottom: 12px;
+    display: flex;
+    img{
+      width: 50px;
+      height: 50px;
+      margin-right: 12px;
+      border-radius: 6px;
+    }
+    .info{
+      >span{
+        font-size: 15px;
+        line-height: 30px;
+        color: #000;
+      }
+      p{
+        font-size: 12px;
+        line-height: 20px;
+        color: gray;
+        span{
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+`
