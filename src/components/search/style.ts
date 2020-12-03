@@ -24,7 +24,7 @@ export const Container = styled.div`
       font-size: 20px;
     }
     input{
-      width: 280px;
+      width: 260px;
       outline: none;
       border: none;
       border-radius: 2rem;
@@ -42,6 +42,7 @@ export const Container = styled.div`
     .result{
       li{
         margin-bottom: 12px;
+        line-height: 16px;
         i{
           color: lightslategrey;
           margin-right: 6px;
