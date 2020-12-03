@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch,useSelector} from "react-redux";
+import LazyLoad from 'react-lazyload'
 import {ITracks, ITrack} from "../../interface";
 import {Container} from "./style"
 import {RootState} from "../../store/reducer";
@@ -25,7 +26,14 @@ const SongList = (props:InterfaceSongList)=>{
       {
         list.map((i, index) => (
           <li key={i.id}>
-            <img src={i.img} alt={i.name}/>
+            <LazyLoad
+              overflow
+              placeholder={
+                <img width="104px" height="104px" src={require('../../assets/images/music.png')} alt="music"/>
+              }
+            >
+              <img src={i.img} alt={i.name}/>
+            </LazyLoad>
             <div className="center">
               <div className='name'>
                 {i.name} <span> - {i.singer}</span>
