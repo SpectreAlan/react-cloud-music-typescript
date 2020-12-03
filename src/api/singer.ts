@@ -61,3 +61,7 @@ export const singerSongsRequest = <T = any>(id: number) => { // 歌手单曲
 export const singerAlbumRequest = <T = any>(id: number) => { // 歌手专辑
   return httpInstance.get<T>(`/artist/album?limit=30&id=${id}`)
 }
+
+export const singerMvRequest = <T = any>(id: number) => { // 歌手mv
+  return httpInstance.get<T>(`/artist/mv?id=${id}`)
+}

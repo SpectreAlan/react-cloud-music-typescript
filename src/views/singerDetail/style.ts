@@ -155,3 +155,44 @@ export const AlbumContainer = styled.ul`
     }
   }
 `
+export const MvContainer = styled.ul`
+  background: #fff;
+  li{
+    margin-bottom: 12px;
+    display: flex;
+    position: relative;
+    img{
+      width: 90px;
+      height: 60px;
+      margin-right: 12px;
+      border-radius: 6px;
+    }
+    .info{
+      >span{
+        font-size: 15px;
+        line-height: 30px;
+        color: #000;
+      }
+      p{
+        font-size: 12px;
+        line-height: 20px;
+        color: gray;
+        span{
+          margin-left: 12px;
+        }
+      }
+    }
+    .play{
+      position: absolute;
+      top: 15px;
+      width: 90px;
+      left: 0;
+      text-align: center;
+      color: #fff;
+      line-height: 30px;
+      i{
+        font-size: 18px;
+      }
+    }
+  }
+`

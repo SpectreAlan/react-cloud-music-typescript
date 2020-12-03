@@ -6,6 +6,8 @@ import {forceCheck} from 'react-lazyload'
 import {ISingerInfo, singerInfoRequest} from '../../api/singer'
 import Songs from "./songs";
 import Albums from "./albums";
+import Mv from "./mv";
+
 const SingerDetail = () => {
   const listRef = useRef(null)
   const toolbarRef = useRef(null)
@@ -89,7 +91,7 @@ const SingerDetail = () => {
       // @ts-ignore
       scrollRef.current.refresh()
     }
-  },[])
+  }, [])
   return (
     <>
       <Top ref={headRef}>
@@ -103,11 +105,10 @@ const SingerDetail = () => {
         <div/>
       </Cover>
       <ToolBar ref={toolbarRef}>
-        <li onClick={() => setI(0)} className={i===0 ? 'active' : ''}>主页</li>
-        <li onClick={() => setI(1)} className={i===1 ? 'active' : ''}>歌曲 <span>({info.musicSize})</span></li>
-        <li onClick={() => setI(2)} className={i===2 ? 'active' : ''}>专辑 <span>({info.albumSize})</span></li>
-        <li onClick={() => setI(3)} className={i===3 ? 'active' : ''}>视频<span>({info.mvSize})</span></li>
-        <li onClick={() => setI(4)} className={i===4 ? 'active' : ''}>动态<span>({info.eventCount})</span></li>
+        <li onClick={() => setI(0)} className={i === 0 ? 'active' : ''}>主页</li>
+        <li onClick={() => setI(1)} className={i === 1 ? 'active' : ''}>歌曲 <span>({info.musicSize})</span></li>
+        <li onClick={() => setI(2)} className={i === 2 ? 'active' : ''}>专辑 <span>({info.albumSize})</span></li>
+        <li onClick={() => setI(3)} className={i === 3 ? 'active' : ''}>视频<span>({info.mvSize})</span></li>
       </ToolBar>
       <ScrollContainer ref={listRef}>
         <Scroll onScroll={onScroll} ref={scrollRef}>
@@ -140,7 +141,7 @@ const SingerDetail = () => {
                       <Albums id={info.id} refresh={refresh}/>
                     </div> :
                     <div className="scroll-content">
-                      视频
+                      <Mv id={info.id} refresh={refresh}/>
                     </div>
               }
             </div>
