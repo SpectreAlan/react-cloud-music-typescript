@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {style} from '../../assets/style/base'
 
 interface InterfaceImg {
   img: string
@@ -38,7 +39,7 @@ export const Top = styled.div`
     z-index: 9;
   }
 `
-export const ToolBar = styled.div`
+export const ToolBar = styled.ul`
   position: fixed;
   top: 206px;
   left: 0;
@@ -51,15 +52,19 @@ export const ToolBar = styled.div`
   background: #fff;
   z-index: 8;
   padding: 0 12px;
-  .iconfont{
-    font-size: 22px;
-  }
-  span{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  li{
     font-size: 16px;
-    &.count{
-      font-size: 14px;
-      margin-left: 8px;
+    span{
+      font-size: 12px;
       color: lightslategrey;
+    }
+  }
+  .active{
+    color: ${style['theme-color']};
+    span{
+      color: ${style['theme-color']};
     }
   }
 `
@@ -96,61 +101,29 @@ export const ScrollContainer = styled.div`
       position: relative;
       .info-box{
         position: absolute;
-        top: 40px;
+        top: 70px;
         width: 100%;
         padding: 10px;
         .info{
-          display: flex;
-          margin-bottom: 20px;
-          .center{
-            height: 60px;
-            margin-left: 10px;
-            width: 220px;
-            position: relative;
-            padding: 10px;
-            color: #fff;
-            .name{
-              font-size: 16px;
-              line-height: 20px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical;
-            }
-            .creator{
-              font-size: 12px;
-              position: absolute;
-              left: 10px;
-              bottom: 10px;
-            }
+          color: #fff;
+          h2{
+            font-size: 18px;
+            font-weight: bold;
           }
-          img{
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-          }
-        }
-        .icons{
-          display: flex;
-          justify-content: space-around;
-          li{
-            text-align: center;
-            i{
-              font-size: 25px;
-              color: #fff;
-            }
-            p{
-              color: #fff;
-              font-size: 14px;
-              line-height: 18px;
-            }
+          p{
+            margin: 12px 0;
           }
         }
       }
-    }
-    .songList{
-      background-color: #fff;
+      .scroll-content{
+        background: #fff;
+        padding: 12px;
+        .description{
+          font-size: 14px;
+          line-height: 20px;
+          text-align: justify;
+        }
+      }
     }
   }
 `

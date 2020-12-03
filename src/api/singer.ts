@@ -53,3 +53,7 @@ export interface ISingerInfo {
 export const singerInfoRequest = <T = any>(id: string) => { // 歌手信息
   return httpInstance.get<T>(`/artist/detail?id=${id}`)
 }
+
+export const singerISongsRequest = <T = any>(id: number) => { // 歌手单曲
+  return httpInstance.get<T>(`/artists?id=${id}`)
+}

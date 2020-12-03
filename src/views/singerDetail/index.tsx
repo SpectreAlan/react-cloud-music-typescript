@@ -3,10 +3,8 @@ import {useHistory} from 'react-router-dom'
 import {Cover, ScrollContainer, ToolBar, Top} from './style'
 import Scroll from '../../components/scroll'
 import {forceCheck} from 'react-lazyload'
-import {getCount} from '../../utils'
 import {ISingerInfo, singerInfoRequest} from '../../api/singer'
-
-
+import SingerSongs from "./singerSongs";
 const SingerDetail = () => {
   const listRef = useRef(null)
   const toolbarRef = useRef(null)
@@ -14,6 +12,7 @@ const SingerDetail = () => {
   const titleRef = useRef(null)
   const headRef = useRef(null)
   const router = useHistory()
+  const [i, setI] = useState(0)
   const [info, setInfo] = useState<ISingerInfo>({
     name: '',
     eventCount: 0,
@@ -83,7 +82,13 @@ const SingerDetail = () => {
       }
     }
   }, [])
-
+  const scrollRef = useRef(null)
+  const refresh = useCallback(() => {
+    if (scrollRef && scrollRef.current) {
+      // @ts-ignore
+      scrollRef.current.refresh()
+    }
+  },[])
   return (
     <>
       <Top ref={headRef}>
@@ -97,10 +102,14 @@ const SingerDetail = () => {
         <div/>
       </Cover>
       <ToolBar ref={toolbarRef}>
-        toolbar
+        <li onClick={() => setI(0)} className={i===0 ? 'active' : ''}>主页</li>
+        <li onClick={() => setI(1)} className={i===1 ? 'active' : ''}>歌曲 <span>({info.musicSize})</span></li>
+        <li onClick={() => setI(2)} className={i===2 ? 'active' : ''}>专辑 <span>({info.albumSize})</span></li>
+        <li onClick={() => setI(3)} className={i===3 ? 'active' : ''}>视频<span>({info.mvSize})</span></li>
+        <li onClick={() => setI(4)} className={i===4 ? 'active' : ''}>动态<span>({info.eventCount})</span></li>
       </ToolBar>
       <ScrollContainer ref={listRef}>
-        <Scroll onScroll={onScroll}>
+        <Scroll onScroll={onScroll} ref={scrollRef}>
           <div className='content'>
             <div className="out">
               <div className="info-box">
@@ -116,9 +125,23 @@ const SingerDetail = () => {
                   </div>
                 </div>
               </div>
-              <div className="songList">
-                songList
-              </div>
+              {
+                i === 0 ?
+                  <div className="scroll-content">
+                    <div className='description'>
+                      {info.briefDesc}
+                    </div>
+                  </div> : i === 1 ?
+                  <div className="scroll-content">
+                    <SingerSongs id={info.id} refresh={refresh}/>
+                  </div> : i === 2 ?
+                    <div className="scroll-content">
+                      专辑
+                    </div> :
+                    <div className="scroll-content">
+                      视频
+                    </div>
+              }
             </div>
           </div>
         </Scroll>
