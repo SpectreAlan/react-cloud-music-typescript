@@ -1,3 +1,5 @@
+import {useRef, useEffect, useCallback} from 'react'
+
 export function getName(list: any[], type: string = 'name'): string {
   const arr: string[] = []
   list.map(item => arr.push(item[type]))
@@ -51,3 +53,5 @@ export const formatDate = (t: number): string => {
 export const getPlayUrl = (id: number): string => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }
+
+

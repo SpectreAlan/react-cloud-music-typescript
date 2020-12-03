@@ -16,6 +16,7 @@ interface SearchProps extends RouteComponentProps {
 const Search = (props: SearchProps) => {
   const [search, setSearch] = useState(false)
   const [keywords, setKeywords] = useState('')
+  const [time, setTime] = useState(new Date().getTime())
   const [hots, setHots] = useState<string[]>([])
   const [result, setResult] = useState<ITracks>([])
   const {playList} = useSelector((state: RootState) => ({
@@ -32,8 +33,11 @@ const Search = (props: SearchProps) => {
       setHots(list)
     })
   }, []);
-  useEffect(() => {
-    if (keywords.length > 1) {
+  const onChange = (val: string) => {
+    setKeywords(val)
+    const currentTime = new Date().getTime()
+    if (keywords.length && (currentTime - time > 500)) {
+      setTime(currentTime)
       searchRequest(keywords).then((res: any) => {
         const list: ITracks = []
         const {songs} = res.data.result
@@ -52,7 +56,7 @@ const Search = (props: SearchProps) => {
         setResult(list)
       })
     }
-  }, [keywords]);
+  }
   const cancel = () => {
     setSearch(false)
     setKeywords('')
@@ -70,12 +74,17 @@ const Search = (props: SearchProps) => {
     // @ts-ignore
     inputRef.current.value = ''
   }
+  const handleSuggestClick = (k: string) => {
+    setKeywords(k)
+    // @ts-ignore
+    inputRef.current.value = k
+  }
   const mv = props.location.pathname.includes('/mv')
   return (
     <Container show={search}>
       <div className='top'>
         <i className='iconfont' dangerouslySetInnerHTML={{__html: mv ? '&#xe603;' : '&#xe61c;'}}/>
-        <input type="text" placeholder='输入关键字搜索...' onChange={(e: any) => setKeywords(e.target.value)}
+        <input type="text" placeholder='输入关键字搜索...' onChange={(e: any) => onChange(e.target.value)}
                onFocus={() => setSearch(true)} ref={inputRef}/>
         <span onClick={cancel}>取消</span>
       </div>
@@ -90,7 +99,7 @@ const Search = (props: SearchProps) => {
                   }}>
                     <i className="iconfont">&#xe74e;</i>
                     <span>
-                    {item.name}
+                    {item.name} - {item.singer}
                   </span>
                   </li>)
                 }
@@ -98,8 +107,11 @@ const Search = (props: SearchProps) => {
               <h3 className='suggest-title'>热搜榜</h3>
               <ul className="suggest">
                 {
-                  hots.map((item: string, i: number) => <li key={item}><span
-                    className={i < 3 ? 'red' : ''}>{i + 1}.</span>{item}</li>)
+                  hots.map((item: string, i: number) => <li
+                      key={item} onClick={() => handleSuggestClick(item)}>
+                      <span className={i < 3 ? 'red' : ''}>{i + 1}.</span>{item}
+                    </li>
+                  )
                 }
               </ul>
             </div>
