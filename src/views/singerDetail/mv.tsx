@@ -48,7 +48,8 @@ const SingerSongs = (props: InterfaceProps) => {
   }, [])
   return <>
     {
-      loading ? <Loading/> :
+      loading ? <Loading/> :(
+        albums.length ?
         <MvContainer>
           {
             albums.map((item:InterfaceAlbum)=><li key={item.id}>
@@ -72,7 +73,7 @@ const SingerSongs = (props: InterfaceProps) => {
               </div>
             </li>)
           }
-        </MvContainer>
+        </MvContainer>: <div className='none'>暂无内容……^~^</div>)
     }
   </>
 }

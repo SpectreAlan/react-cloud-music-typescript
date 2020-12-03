@@ -123,6 +123,10 @@ export const ScrollContainer = styled.div`
           line-height: 20px;
           text-align: justify;
         }
+        .none{
+          padding: 50px 0;
+          text-align: center;
+        }
       }
     }
   }

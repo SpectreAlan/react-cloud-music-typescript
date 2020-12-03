@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { singerAlbumRequest} from "../../api/singer";
-import {AlbumContainer} from './style'
+import {singerAlbumRequest} from "../../api/singer";
+import {AlbumContainer, MvContainer} from './style'
 import Loading from "../../components/loading";
 import LazyLoad from 'react-lazyload'
 import {formatDate} from '../../utils'
@@ -46,16 +46,16 @@ const SingerSongs = (props: InterfaceProps) => {
       setLoading(false)
     })
   }, [])
-  const go = (id:number)=>{
+  const go = (id: number) => {
     // sessionStorage.setItem('songListId', String(id))
     // router.push('/songList')
   }
   return <>
     {
-      loading ? <Loading/> :
+      loading ? <Loading/> : (albums.length ?
         <AlbumContainer>
           {
-            albums.map((item:InterfaceAlbum)=><li key={item.id}  onClick={()=>go(item.id)}>
+            albums.map((item: InterfaceAlbum) => <li key={item.id} onClick={() => go(item.id)}>
               <LazyLoad
                 overflow
                 placeholder={
@@ -72,7 +72,7 @@ const SingerSongs = (props: InterfaceProps) => {
               </div>
             </li>)
           }
-        </AlbumContainer>
+        </AlbumContainer> : <div className='none'>暂无内容……^~^</div>)
     }
   </>
 }

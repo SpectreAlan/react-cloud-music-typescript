@@ -34,7 +34,7 @@ const SingerDetail = () => {
     singerInfoRequest(sessionStorage.getItem('singerId') || '').then((res: any) => {
       const {eventCount, user, artist} = res.data.data
       const {name, id, cover, identifyTag, briefDesc, albumSize, musicSize, mvSize} = artist
-      const {detailDescription, description, followed} = user
+      const {detailDescription, description, followed} = user || {}
       setInfo({
         eventCount,
         name,
@@ -120,7 +120,7 @@ const SingerDetail = () => {
                   <p>{info.description}</p>
                   <div className="tags">
                     {
-                      info.identifyTag.map((item: string) => (
+                      info.identifyTag && info.identifyTag.map((item: string) => (
                         <span>{item}</span>
                       ))
                     }
