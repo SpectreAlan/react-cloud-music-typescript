@@ -83,7 +83,7 @@ const SingerDetail = () => {
     }
   }, [])
   const scrollRef = useRef(null)
-  const refresh = useCallback(() => {
+  const refresh = useCallback(() => { // 解决切换tab以后better-scroll滚动假死bug
     if (scrollRef && scrollRef.current) {
       // @ts-ignore
       scrollRef.current.refresh()
