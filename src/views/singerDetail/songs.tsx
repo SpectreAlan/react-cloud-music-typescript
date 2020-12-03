@@ -26,7 +26,7 @@ const Songs = (props: InterfaceProps) => {
           id: item.id,
           url: item.mp3Url,
           img: item.al.picUrl,
-          duration: item.duration,
+          duration: item.dt,
           singer: getName(item.ar),
           album: item.al.name
         })

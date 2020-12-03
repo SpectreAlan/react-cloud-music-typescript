@@ -121,7 +121,7 @@ const SingerDetail = () => {
                   <div className="tags">
                     {
                       info.identifyTag && info.identifyTag.map((item: string) => (
-                        <span>{item}</span>
+                        <span key={item}>{item}</span>
                       ))
                     }
                   </div>

@@ -39,14 +39,14 @@ const Singer = () => {
         <div className="category">
           {
             [-1, 1, 2, 3].map((item: singerType) => (
-              <span onClick={() => setType(item)} className={item === type ? 'active' : ''}>{singerType[item]}</span>
+              <span onClick={() => setType(item)} className={item === type ? 'active' : ''} key={item}>{singerType[item]}</span>
             ))
           }
         </div>
         <div className="category">
           {
             [-1, 0, 7, 8, 16, 96].map((item: areaType) => (
-              <span onClick={() => setArea(item)} className={item === area ? 'active' : ''}>{areaType[item]}</span>
+              <span onClick={() => setArea(item)} className={item === area ? 'active' : ''} key={item}>{areaType[item]}</span>
             ))
           }
         </div>
