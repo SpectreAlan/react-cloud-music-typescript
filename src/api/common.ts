@@ -25,6 +25,7 @@ export const commentRequest = <T = any>(id: number | string, commentType: Commen
 }
 
 export const commentsRequest = <T = any>(id: number | string, type: CommentType) => { // 获取评论列表， id，offset，limit
+  console.log(`/comment/${CommentType[type]}?id=${id}`)
   return httpInstance.get<T>(`/comment/${CommentType[type]}?id=${id}`)
 }
 
