@@ -25,14 +25,15 @@ const Search = (props: SearchProps) => {
   const dispatch = useDispatch()
   const inputRef = useRef(null)
   useEffect(() => {
-    hotRequest().then((res: any) => {
+    search && hotRequest().then((res: any) => {
       const list: string[] = []
+      // eslint-disable-next-line array-callback-return
       res.data.result.hots.map((item: any) => {
         list.push(item.first)
       })
       setHots(list)
     })
-  }, []);
+  }, [search]);
   const onChange = (val: string) => {
     setKeywords(val)
     const currentTime = new Date().getTime()
