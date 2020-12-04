@@ -1,5 +1,5 @@
 import React from "react"
-import {IMv} from '../../store/modules/mv/reducer'
+import {IVideo} from '../../store/modules/video/reducer'
 import {useHistory} from 'react-router'
 import Scroll from "../../components/scroll"
 import LazyLoad, {forceCheck} from "react-lazyload"
@@ -7,14 +7,14 @@ import {Control, Img, ScrollContainer} from "./style"
 import {formatDuration, getCount} from "../../utils"
 
 interface MvInterface {
-  list: IMv
+  list: IVideo
 }
-const MvList = (props: MvInterface) => {
+const VideoList = (props: MvInterface) => {
   const {list} = props
   const router = useHistory()
   const detail = (vid:string)=>{
     sessionStorage.setItem('vid', vid)
-    router.push('/mvDetail')
+    router.push('/videoDetail')
   }
   return (
     <ScrollContainer>
@@ -69,4 +69,4 @@ const MvList = (props: MvInterface) => {
     </ScrollContainer>)
 }
 
-export default MvList
+export default VideoList

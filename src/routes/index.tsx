@@ -9,7 +9,7 @@ const SuspenseComponent = (Component: LazyExoticComponent<any>) => (props: any) 
 );
 
 const Find = lazy(() => import("../views/find"));
-const Mv = lazy(() => import("../views/mv"));
+const Video = lazy(() => import("../views/video"));
 const Login = lazy(() => import("../views/login"));
 const Mine = lazy(() => import("../views/mine"));
 const DailyRecommendation = lazy(() => import("../views/dailyRecommendation"));
@@ -18,7 +18,7 @@ const PlaylistPlaza = lazy(() => import("../views/playlistPlaza"));
 const TopList = lazy(() => import("../views/topList"));
 const Singer = lazy(() => import("../views/singer"));
 const SingerDetail = lazy(() => import("../views/singerDetail"));
-const MvDetail = lazy(() => import("../views/mv/detail"));
+const VideoDetail = lazy(() => import("../views/video/detail"));
 
 export const routes = [
   {
@@ -40,20 +40,20 @@ export const routes = [
         ]
       },
       {
-        path: "/mv",
-        component: SuspenseComponent(Mv),
+        path: "/video",
+        component: SuspenseComponent(Video),
         routes: [
           {
-            path: "/mv",
+            path: "/video",
           }
         ]
       },
       {
-        path: "/mvDetail",
-        component: SuspenseComponent(MvDetail),
+        path: "/videoDetail",
+        component: SuspenseComponent(VideoDetail),
         routes: [
           {
-            path: "/mvDetail",
+            path: "/videoDetail",
           }
         ]
       },

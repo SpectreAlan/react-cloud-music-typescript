@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {ITypes} from '../../store/modules/mv/reducer'
+import {ITypes} from '../../store/modules/video/reducer'
 import {NavBox} from "./style";
 import Scroll from "../../components/scroll";
 

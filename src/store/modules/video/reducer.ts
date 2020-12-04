@@ -8,7 +8,7 @@ export interface ITypesItem {
 }
 
 
-interface IMvItem {
+interface IVideoItem {
   coverUrl: string;
   title: string;
   avatarUrl: string;
@@ -22,21 +22,21 @@ interface IMvItem {
 
 export type ITypes = ITypesItem[];
 
-export type IMv = IMvItem[];
+export type IVideo = IVideoItem[];
 
-export interface MvState {
+export interface VideoState {
   loading: boolean;
   types: ITypes;
-  list: IMv;
+  list: IVideo;
 }
 
-const defaultState: MvState = {
+const defaultState: VideoState = {
   types: [],
   list: [],
   loading: false
 };
 
-export const mvReducer = produce((state, action: AnyAction) => {
+export const videoReducer = produce((state, action: AnyAction) => {
   switch(action.type) {
     case types.LOADING:
       state.loading = action.data;

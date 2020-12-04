@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux"
 import {RootState} from "../../store/reducer";
-import {getMv, getTypes} from "../../store/modules/mv/actions"
+import {getVideo, getTypes} from "../../store/modules/video/actions"
 import Loading from "../../components/loading"
 import Search from "../../components/search"
 import Nav from './nav'
-import MvList from './mvList'
+import VideoList from './videoList'
 
-const Mv = () => {
+const Video = () => {
   const {list, loading, types} = useSelector((state: RootState) => ({
-    list: state.mv.list,
-    loading: state.mv.loading,
-    types: state.mv.types
+    list: state.video.list,
+    loading: state.video.loading,
+    types: state.video.types
   }));
 
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const Mv = () => {
   }, [])
 
   const updateCategory = (val: number) => {
-    dispatch(getMv(val))
+    dispatch(getVideo(val))
   }
 
   return (
@@ -31,10 +31,10 @@ const Mv = () => {
       <Search/>
       <Nav list={types} updateCategory={updateCategory}/>
       {
-        loading ? <Loading/> : <MvList list={list}/>
+        loading ? <Loading/> : <VideoList list={list}/>
       }
     </>
   );
 };
 
-export default React.memo(Mv);
+export default React.memo(Video);

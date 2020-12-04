@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router';
-import {detailRequest, urlRequest, IDetail} from '../../api/mv'
+import {detailRequest, urlRequest, IDetail} from '../../api/video'
 import Comments from '../../layouts/comments'
 
-const MvDetail = () => {
+const VideoDetail = () => {
   const [url, setUrl] = useState('')
   const router = useHistory()
   const [detail, setDetail] = useState<IDetail>({
@@ -47,4 +47,4 @@ const MvDetail = () => {
   )
 }
 
-export default React.memo(MvDetail)
+export default React.memo(VideoDetail)

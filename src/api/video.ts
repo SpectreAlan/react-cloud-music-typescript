@@ -1,6 +1,6 @@
 import {httpInstance} from "./axios"
 
-export const getMvRequest = (id: number) => {
+export const getVideoRequest = (id: number) => {
   return httpInstance.post<number>("/video/group?id=" + id)
 };
 

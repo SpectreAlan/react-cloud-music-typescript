@@ -1,10 +1,10 @@
 import types from './actionTypes';
-import {getMvRequest, getTypesRequest} from '../../../api/mv';
+import {getVideoRequest, getTypesRequest} from '../../../api/video';
 import {Dispatch} from 'redux';
-import {ITypes, IMv } from './reducer';
+import {ITypes, IVideo } from './reducer';
 import {AxiosResponse} from 'axios';
 
-export const changeMv = (data: IMv) => ({
+export const changeVideo = (data: IVideo) => ({
   type: types.LIST,
   data
 });
@@ -19,12 +19,12 @@ export const changeLoading = (data: boolean) => ({
   data
 });
 
-export const getMv = (id: number) => {
+export const getVideo = (id: number) => {
   return (dispatch: Dispatch) => {
     dispatch(changeLoading(true))
-    getMvRequest(id).then((data: AxiosResponse) => {
+    getVideoRequest(id).then((data: AxiosResponse) => {
       const res = data.data.datas
-      const list: IMv = []
+      const list: IVideo = []
       // eslint-disable-next-line array-callback-return
       res.map((item: any) => {
         const {coverUrl, title, praisedCount, playTime, durationms, commentCount, vid} = item.data
@@ -33,11 +33,11 @@ export const getMv = (id: number) => {
           coverUrl, title, avatarUrl, nickname, praisedCount, playTime, durationms, commentCount,vid
         })
       })
-      dispatch(changeMv(list))
+      dispatch(changeVideo(list))
       dispatch(changeLoading(false))
     }).catch((e) => {
       dispatch(changeLoading(false))
-      console.log("mv:" + e);
+      console.log("video:" + e);
     })
   }
 };
@@ -47,7 +47,7 @@ export const getTypes = () => {
     getTypesRequest<{ types: ITypes }>().then((data: AxiosResponse) => {
       dispatch(changeTypes(data.data.data))
     }).catch((e) => {
-      console.log("mv类别:" + e);
+      console.log("video类别:" + e);
     })
   }
 };

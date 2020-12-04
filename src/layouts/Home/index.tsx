@@ -23,7 +23,7 @@ function Home(props: RouteConfigComponentProps) {
             <span> 发现 </span>
           </div>
         </NavLink>
-        <NavLink to="/mv" activeClassName="selected">
+        <NavLink to="/video" activeClassName="selected">
           <div>
             <i className='iconfont'>&#xe637;</i>
             <span> 视频 </span>
