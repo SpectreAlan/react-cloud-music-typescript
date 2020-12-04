@@ -8,7 +8,7 @@ export const playListSubscribeRequest = <T = any>(id: number, t: number) => { //
   return httpInstance.get<T>(`/playlist/subscribe?t=${t}&id=${id}`)
 }
 
-export const commentLikeRequest = <T = any>(id: number, t: number, commentType: CommentType, cid: number) => { // 评论点赞
+export const commentLikeRequest = <T = any>(id: number | string, t: number, commentType: CommentType, cid: number) => { // 评论点赞
   /*
     t : 是否点赞 ,1 为点赞 ,0 为取消点赞
     type 0: 歌曲 1: mv 2: 歌单 3: 专辑 4: 电台 5: 视频 6: 动态
@@ -16,7 +16,7 @@ export const commentLikeRequest = <T = any>(id: number, t: number, commentType: 
    */
   return httpInstance.get<T>(`/comment/like?id=${id}&cid=${cid}&t=${t}&type=${commentType}`)
 }
-export const commentRequest = <T = any>(id: number, commentType: CommentType, content: string) => { // 添加评论
+export const commentRequest = <T = any>(id: number | string, commentType: CommentType, content: string) => { // 添加评论
   /*
     id:对应资源 id
     content :要发送的内容
@@ -24,7 +24,8 @@ export const commentRequest = <T = any>(id: number, commentType: CommentType, co
   return httpInstance.get<T>(`/comment?t=1&type=${commentType}&id=${id}&content=${content}`)
 }
 
-export const commentsRequest = <T = any>(id: number, type: CommentType) => { // 获取评论列表， id，offset，limit
+export const commentsRequest = <T = any>(id: number | string, type: CommentType) => { // 获取评论列表， id，offset，limit
+  console.log(`/comment/${CommentType[type]}?id=${id}`)
   return httpInstance.get<T>(`/comment/${CommentType[type]}?id=${id}`)
 }
 

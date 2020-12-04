@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Container} from './style'
+import {useHistory} from 'react-router';
 import {detailRequest, urlRequest, IDetail} from '../../api/mv'
+import Comments from '../../layouts/comments'
 
 const MvDetail = () => {
   const [url, setUrl] = useState('')
+  const router = useHistory()
   const [detail, setDetail] = useState<IDetail>({
     nickname: '',
     coverUrl: '',
@@ -37,10 +39,11 @@ const MvDetail = () => {
       })
     })
   }, [])
+  const vid = sessionStorage.getItem('vid') || ''
   return (
-    <Container>
-      <video src={url} controls={true} width='100%' poster={detail.coverUrl}/>
-    </Container>
+    <Comments commentType={5} handleBack={()=>router.go(-1)} id={vid} title={detail.title} height='300px'>
+      <video src={url} controls={true} width='336px' height='204px' poster={detail.coverUrl}/>
+    </Comments>
   )
 }
 

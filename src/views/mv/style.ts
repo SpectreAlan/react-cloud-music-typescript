@@ -112,4 +112,12 @@ export const Control = styled.div`
   }
 `
 
-export const Container = styled.div``
+export const Container = styled.div`
+position: fixed;
+top:0;
+left: 0;
+bottom: 0;
+right: 0;
+padding-top: 204px;
+overflow: hidden;
+`
