@@ -10,7 +10,9 @@
 </div>
 
 # 简介
-基于React搭建的移动端网易云音乐，React Hooks + Typescript练手项目，接口使用 [Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+基于React搭建的移动端网易云音乐，React Hooks + Typescript练手项目，接口使用 [Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 
+
+项目演示地址🔜： [点我](https://music.jszoo.com)
 
 # 功能
 
